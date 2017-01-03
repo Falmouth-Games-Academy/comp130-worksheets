@@ -7,6 +7,17 @@
 const int wordLength = 5;
 const int numberOfWords = 15;
 
+
+int GetLikeness(std::string guessedword, std::string secretword)
+{
+	int Result = 0;
+	for (int i = 0; i < wordLength; i++)
+	{
+		if (guessedword.at(i) == secretword.at(i))
+			Result++;
+	}
+	return Result;
+}
 int main()
 {
 	// Seed the random number generator with the current time,
@@ -40,7 +51,30 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+	int Likeness = 0;
+	int IncorrectGuesses = 0;
+	std::string guess;
 
+	while (IncorrectGuesses < 4)
+	{
+		std::cout << "\nType word in UPPERCASE\n";
+		std::cin >> guess;
+		Likeness = GetLikeness(guess, secret);
+		std::cout << "Likeness = " << Likeness << "/" << wordLength << "\n";
+		if (Likeness == wordLength)
+		{
+			std::cout << "You Win!";
+			return 0;
+		}
+		else
+		{
+			IncorrectGuesses++;
+			std::cout << "Incorrect Guesses = " << IncorrectGuesses << "/4\n\n";
+			Likeness = 0;
+		}
+
+	}
+	std::cout << "Game Over";
     return 0;
 }
 
