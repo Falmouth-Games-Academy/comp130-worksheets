@@ -6,6 +6,9 @@
 
 const int wordLength = 5;
 const int numberOfWords = 15;
+int livesRemaining = 4;
+int wordMatch = 0;
+std::string playerGuess;
 
 int main()
 {
@@ -37,10 +40,36 @@ int main()
 	for each (std::string word in options)
 	{
 		std::cout << word << std::endl;
+		
+	}
+
+	while (livesRemaining >= 1)
+	{
+		std::cout << "Guess the word (Use captial letters)" << std::endl;
+		std::cout << secret << std::endl;
+		std::cin >> playerGuess;
+		if (secret.compare(playerGuess) == 0)
+		{
+			std::cout << "Correct word selected" << std::endl;
+
+		}
+		
+		else
+		{
+			livesRemaining -= 1;
+			std::cout << livesRemaining << " Lives remaining" << std::endl;
+			std::cout << "Similarity score of" << (secret.compare(playerGuess)) << std::endl;
+ 
+		}
+
+	}
+	if (livesRemaining == 0)
+	{
+		std::cout << "This terminal has been locked, please contact your robco supervisor." << std::endl;
+		std::cin >> playerGuess;
 	}
 
 	// TODO: implement the rest of the game
 
     return 0;
 }
-
