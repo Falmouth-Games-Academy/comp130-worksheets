@@ -11,11 +11,14 @@ const int numberOfWords = 15;
 int GetLikeness(std::string guessedword, std::string secretword)
 {
 	int Result = 0;
+	// Loops for the ammount of characters in the word
 	for (int i = 0; i < wordLength; i++)
 	{
+		// for every letter that matches the result is increased by one
 		if (guessedword.at(i) == secretword.at(i))
 			Result++;
 	}
+	// Returns the Likeness value
 	return Result;
 }
 int main()
@@ -53,28 +56,43 @@ int main()
 	// TODO: implement the rest of the game
 	int Likeness = 0;
 	int IncorrectGuesses = 0;
+	bool inlist;
 	std::string guess;
-
+	
 	while (IncorrectGuesses < 4)
 	{
-		std::cout << "\nType word in UPPERCASE\n";
-		std::cin >> guess;
+		inlist = false;
+		while (inlist == false)
+		{
+			std::cout << "Type word in UPPERCASE" << std::endl;
+			std::cin >> guess;
+
+			// loops through all the words in the word list
+			for each (std::string word in options)
+			{
+				// If the player guess is in the word list then it breaks out of the loop
+				if (guess == word)
+					inlist = true;
+			}
+		}
+		// Gets the likeness value
 		Likeness = GetLikeness(guess, secret);
-		std::cout << "Likeness = " << Likeness << "/" << wordLength << "\n";
+		std::cout << "Likeness = " << Likeness << "/" << wordLength << std::endl;
+		// Checks if the player got the correct answer
 		if (Likeness == wordLength)
 		{
-			std::cout << "You Win!";
+			std::cout << "You Win!" << std::endl;
 			return 0;
 		}
 		else
 		{
+			// Increments the incorrect guesses if the player gets the wrong answer
 			IncorrectGuesses++;
-			std::cout << "Incorrect Guesses = " << IncorrectGuesses << "/4\n\n";
-			Likeness = 0;
+			std::cout << "Incorrect Guesses = " << IncorrectGuesses << "/4" << std::endl;
 		}
-
 	}
-	std::cout << "Game Over";
+	// When player reaches 4 incorrect guesses "game over" is displayed and the program exits
+	std::cout << "Game Over" << std::endl;
     return 0;
 }
 
