@@ -6,12 +6,12 @@
 
 int main()
 {
+	
 	// Initialise the image
 	CImg<unsigned char> image(800, 800, 1, 3, 0);
 
 	// Display the image
 	CImgDisplay display(image, "Mandelbrot Set");
-
 	// Minimum and maximum coordinates for the fractal
 	const double minX = -2, maxX = 1, minY = -1.5, maxY = 1.5;
 
@@ -84,7 +84,7 @@ int main()
 
 	// Display the complete image
 	display.display(image);
-
+	
 	// Uncomment this line to save the image to disk
 	image.save_bmp("mandelbrot.bmp");
 
@@ -96,3 +96,5 @@ int main()
 
 	return 0;
 }
+
+
