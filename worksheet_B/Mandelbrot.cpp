@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 
+
 int main()
 {
 	// Initialise the image
@@ -30,6 +31,7 @@ int main()
 			double yI = 0;
 			int iteration = 0;
 			int max_iteration = 200;
+
 			while (iteration < max_iteration && xI * xI + yI + yI < 4)
 			{
 				double xtemp = xI * xI - yI * yI + x0;
@@ -37,11 +39,42 @@ int main()
 				xI = xtemp;
 				iteration++;
 			}
-				// Write the pixel
+
+			// Write the pixel
+			int RedValue = 0;
+			int GreenValue = 0;
+			int BlueValue = 0;
+
+			if (iteration <= 60)
+			{
+				RedValue = 255;
+				GreenValue = (iteration / 60.0) * 255;
+			}
+			else if (iteration <= 120)
+			{
+				RedValue = 255 - (((iteration - 60) / 60.0) * 255);
+				GreenValue = 255;
+			}
+			else if (iteration <= 180)
+			{
+				GreenValue = 255;
+				BlueValue = ((iteration - 120) / 60.0) * 255;
+			}
+			else if (iteration <= 199)
+			{
+				GreenValue = 255 - (((iteration - 60) / 60.0) * 255);
+				BlueValue = 255;
+			}
+			else
+			{
+				RedValue = 0;
+				GreenValue = 0;
+				BlueValue = 0;
+			}
 				// TODO: change the right-hand side of these three lines to write the desired pixel colour value
-					image(pixelX, pixelY, 0, 0) = iteration; // red component
-					image(pixelX, pixelY, 0, 1) = 0; // green component
-					image(pixelX, pixelY, 0, 2) = 0; // blue component
+					image(pixelX, pixelY, 0, 0) = RedValue; // red component
+					image(pixelX, pixelY, 0, 1) = GreenValue; // green component
+					image(pixelX, pixelY, 0, 2) = BlueValue; // blue component
 		}
 
 		// Uncomment this line to redisplay the image after each row is generated
