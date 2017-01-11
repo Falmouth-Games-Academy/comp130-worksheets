@@ -20,3 +20,6 @@
 #include <string>
 #include <set>
 #include <time.h>
+
+//getLikeness(std::string guessedWord, std::string secret);
+//int main();
