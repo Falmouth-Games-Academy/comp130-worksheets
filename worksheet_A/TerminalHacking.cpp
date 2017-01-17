@@ -6,6 +6,7 @@
 
 const int wordLength = 5;
 const int numberOfWords = 15;
+int likeness(std::string secret, std::string guess);
 
 int main()
 {
@@ -43,4 +44,6 @@ int main()
 
     return 0;
 }
+
+
 
