@@ -70,20 +70,28 @@ int main()
 
 	while (lives > 0) {
 
-		std::cout << "You have " << lives << " chances to guess the word, pick your keystrokes wisely." << std::endl;
+		std::cout << std::endl << "You have " << lives << " chances to guess the word, pick your keystrokes wisely." << std::endl << std::endl;
 
 		std::string guess;
 		std::cin >> guess;
 
 		if (wordInList(guess, options)) {
+
 			lives -= 1;
+
+			if (guess == secret) {
+				std::cout << "Congrats, you're a real winner. Go upstairs and tell your mum, she will be proud." << std::endl;
+				lives = 0;
+			}
+			else {
+				std::cout << "You got " << getLikeness(guess, secret) << " letters correct!";
+			}
 		}
 		else {
-			std::cout << "That's not on the list, you idiot, have another go. I'll not take off a life because I enjoy insulting you." << std::endl;
+
+			std::cout << std::endl << "That's not on the list, you idiot, have another go. I'll not take off a life because I enjoy insulting you." << std::endl << std::endl;
+			std::cout << "P.S. Did you notice they're uppercase?" << std::endl;
 		}
-
-
-
 	}
 
     return 0;
