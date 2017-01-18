@@ -21,6 +21,18 @@ int getLikeness(std::string guessedWord, std::string secretWord)
 	return result;
 }
 
+bool wordInList(std::string guess, std::set<std::string> options)
+{
+	for each (std::string word in options) {
+
+		if (guess == word) {
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
 int main()
 {
 	// Seed the random number generator with the current time,
@@ -54,6 +66,25 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+	int lives = 4;
+
+	while (lives > 0) {
+
+		std::cout << "You have " << lives << " chances to guess the word, pick your keystrokes wisely." << std::endl;
+
+		std::string guess;
+		std::cin >> guess;
+
+		if (wordInList(guess, options)) {
+			lives -= 1;
+		}
+		else {
+			std::cout << "That's not on the list, you idiot, have another go. I'll not take off a life because I enjoy insulting you." << std::endl;
+		}
+
+
+
+	}
 
     return 0;
 }
