@@ -4,9 +4,11 @@
 #include "stdafx.h"
 #include "WordList.h"
 
+
 const int wordLength = 5;
 const int numberOfWords = 15;
-int likeness(std::string secret, std::string guess);
+int likeness(std::string secretWord, std::string guessWord);
+std::string word;
 
 int main()
 {
@@ -41,9 +43,17 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
-
+	std::cin >> word ;
+	likeness(word, secret);
     return 0;
 }
-
-
+int likeness(std::string secretWord, std::string guessWord)
+{
+	int len = guessWord.length();
+	for (int i = 0; i < len; i++)
+	{
+		std::cout << guessWord;
+	}
+	return 0;
+}
 
