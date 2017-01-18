@@ -16,5 +16,7 @@
 #include <iostream>
 #include <vector>
 
+#include<cmath>
+
 #include "CImg/CImg.h"
 using namespace cimg_library;
