@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "WordList.h"
 
-const int wordLength = 5;
+const int wordlength = 5;
 const int numberOfWords = 15;
 int lives = 4;
 
@@ -31,7 +31,7 @@ int main()
 	srand(static_cast<unsigned int>(time(nullptr)));
 
 	// Initialise word list
-	WordList words(wordLength);
+	WordList words(wordlength);
 
 	// Choose secret word
 	std::string secret = words.getRandomWord();
@@ -56,14 +56,54 @@ int main()
 		std::cout << word << std::endl;
 	}
 
-	while (lives > 0)
-	{
-		std::cout << "This should work";
-	}
+	
 	// TODO: implement the rest of the game
+	bool correctguess;
+	int Likeness = 0;
+	std::string input;
 
+	while (lives < 4)
+	{
+		correctguess = false;
+		while (correctguess == false)
+		
+		{
+			std::cout << "Please Enter Your Guess\n";
+			std::cin >> input;
 
+			// Checks all of the words in the list against the player's guess
+			for each (std::string word in options)
+			
+			{
+				// If the player's guess is correct, the player wins!
+				if (input == word)
+					correctguess = true;
+					std::cout << "You Win!\n";
+					return 0;
+			}
+		
+		}
 
-    return 0;
+		// Gets the likeness of value of the player's guess against the secret word, by calling the created function
+		Likeness = getlikeness(input, secret);
+		std::cout << "Likeness score was = " << Likeness << "/" << wordlength << std::endl;
+		// Checks if the inputted guess was correct
+		if (Likeness == wordlength)
+		{
+			std::cout << "You Win!" << std::endl;
+			return 0;
+		}
+		else
+		{
+			// Removes a life if the correct anwser is not given by the player
+			lives = lives - 1;
+			std::cout << "Incorrect Guesses = " << lives << std::endl;
+		}
+	}
+	
+	// When the player hits 0 lives, the game ends and the program is closed
+	std::cout << "You lose!\n";
+	return 0;
 }
+
 
