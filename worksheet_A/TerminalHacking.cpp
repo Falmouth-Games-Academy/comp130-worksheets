@@ -6,6 +6,24 @@
 
 const int wordLength = 5;
 const int numberOfWords = 15;
+int playerLives = 4; 
+std::string guessWord;
+int wordLengthLetter;
+int simScore = 0;
+
+// Checks the similarity between players guessed word and the correct secret word
+int simCheck(std::string guessWord, std::string secretWord)
+{
+	int score = 0;
+	for (wordLengthLetter = 0; wordLengthLetter < wordLength; wordLengthLetter++)
+		{
+			if (guessWord.at(wordLengthLetter) == secretWord.at(wordLengthLetter))
+			{
+				score++;
+			}
+		}
+	return score;
+}
 
 int main()
 {
@@ -38,8 +56,28 @@ int main()
 	{
 		std::cout << word << std::endl;
 	}
-
-	// TODO: implement the rest of the game
+	
+	// Game loop
+	while (playerLives > 0) 
+	{
+		std::cout << "Choose a word... ";
+		std::cin >> guessWord;
+		simScore = simCheck(guessWord, secret);
+		if (simScore == wordLength)
+		{
+			std::cout << "Correct" << std::endl;
+			std::cin >> guessWord;
+			playerLives = 0;
+		}
+		else
+		{
+			playerLives -= 1;
+			std::cout << simScore << " Letters are correct" << std::endl;
+			std::cout << "You have " << playerLives << " lives remaining" << std::endl;
+			std::cout << std::endl;
+		}
+	}
+	
 
     return 0;
 }
