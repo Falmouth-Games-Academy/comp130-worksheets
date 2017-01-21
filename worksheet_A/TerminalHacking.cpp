@@ -62,12 +62,14 @@ int main()
 	int Likeness = 0;
 	std::string input;
 
-	while (lives < 4)
+	//Only runs loop while the player has lives left
+	while (lives <= 4)
 	{
 		correctguess = false;
 		while (correctguess == false)
 		
-		{
+		{	
+			// Allows the player to enter an anwser
 			std::cout << "Please Enter Your Guess\n";
 			std::cin >> input;
 
@@ -96,7 +98,7 @@ int main()
 		else
 		{
 			// Removes a life if the correct anwser is not given by the player
-			lives = lives - 1;
+			lives--;
 			std::cout << "Incorrect Guesses = " << lives << std::endl;
 		}
 	}
