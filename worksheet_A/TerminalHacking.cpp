@@ -80,11 +80,10 @@ int main()
 			for each (std::string word in options)
 			
 			{
-				// If the player's guess is correct, the player wins!
+				// Checks that the player's word is actually in the list
 				if (input == word)
 					correctguess = true;
-					std::cout << "You Win!\n";
-					return 0;
+					
 			}
 		
 		}
