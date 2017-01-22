@@ -10,7 +10,6 @@
 const int wordLength = 5;
 const int numberOfWords = 15;
 int likeness(std::string secretWord, std::string guessWord);
-//bool guesscheck(std::string guesscheck, std::string list);
 
 int main()
 {
@@ -45,61 +44,68 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+
+	// initialise variables
+	bool WordInList = false;
 	std::cout << secret;
 	std::string guess;
 	int lives = 4;
 	std::string result = "Lost";
+
+	// main game loop
 	while (lives > 0) 
 	{
+
+		// Ask for user guess
 		std::cout << " what is your guess?" << std::endl;
 		std::cin >> guess;
-		int likenessScore = likeness(secret, guess);
-		if (likenessScore == wordLength)
+
+		// Check to see if guess is in word set
+		for each (std::string word in options)
 		{
-			std::cout << "Gz Noob! You had " << lives << " lives remaining!"<<std::endl;
-			result = "Won";
-			lives = 0;
+			size_t setSearch = word.find(guess);
+			if (setSearch != std::string::npos) {
+
+				WordInList = true;
+			}
 		}
 
-		else
-		{
-			lives -= 1;
-			std::cout<< "Your Likeness Score was: " << likenessScore << std::endl;
+		// Calculates likeness if guess is valid
+		if (WordInList == true){
+			int likenessScore = likeness(secret, guess);
+			if (likenessScore == wordLength){
+				std::cout << "Gz Noob! You had " << lives << " lives remaining!" << std::endl;
+				result = "Won";
+				lives = 0;
+			}
+
+			else{
+				lives -= 1;
+				std::cout << "Your Likeness Score was: " << likenessScore << std::endl;
+			}
+		}
+		else {
+			std::cout << "invalid guess, try again!" << std::endl;
 		}
 	}
 	std::cout << "Game Over You " << result;
     return 0;
 }
+
+// function to calculate likeness
 int likeness(std::string secretWord, std::string guessWord)
 {
 	int likeness = 0;
 	const char *SecrWord = secretWord.c_str();
 	const char *GuesWord = guessWord.c_str();
 	int len = guessWord.length();
-	for (int i = 0; i < len; i++)
-	{	
-		if (SecrWord[i] == GuesWord[i])
-		{
+	for (int i = 0; i < len; i++){	
+		if (SecrWord[i] == GuesWord[i]){
 			likeness++;
 		}
 
 	}
 	return likeness;
 }
-/*
-bool guesscheck(std::string guesscheck, list)
-{
-	bool valid = false;
-	const char *guess = guesscheck.c_str();
-	for each (std::string word in list)
-	{
-		const char *wordC = word.c_str();
-		if (wordC == guess) 
-		{
-			bool valid = true;
-		}
-	}
-	return valid;
-}
-*/
+
 
