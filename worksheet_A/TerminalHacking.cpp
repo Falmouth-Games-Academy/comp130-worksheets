@@ -7,14 +7,15 @@
 const int wordLength = 5;
 const int numberOfWords = 15;
 
-// Returns number of matching letters
+// Returns likness, the number of matching letters
 int getLikeness(std::string guessededWord, std::string secretWord)
 {
 	int result = 0;
 
-	for (int i = 0; i < secretWord.length(); i += 1) {
-
-		if (secretWord.at(i) == guessededWord.at(i)) {
+	for (int i = 0; i <= (secretWord.length() - 1); i ++)
+	{
+		if (secretWord.at(i) == guessededWord.at(i)) 
+		{
 			result += 1;
 		}
 	}
@@ -22,12 +23,13 @@ int getLikeness(std::string guessededWord, std::string secretWord)
 	return result;
 }
 
-// Checks to see if word is in the list
+// Checks if word is in the list
 bool wordInList(std::string guessed, std::set<std::string> options)
 {
-	for each (std::string word in options) {
-
-		if (guessed == word) {
+	for each (std::string word in options) 
+	{
+		if (guessed == word) 
+		{
 			return 1;
 		}
 	}
