@@ -21,6 +21,5 @@
 #include <set>
 #include <time.h>
 
-int GetLikeness(std::string guessedWord, std::string secret);
 int main();
-bool AskToPlayAgain();
+int GetLikeness(std::string guessedWord, std::string secret);
