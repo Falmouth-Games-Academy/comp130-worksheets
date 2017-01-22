@@ -8,13 +8,13 @@ const int wordLength = 5;
 const int numberOfWords = 15;
 
 // Returns number of matching letters
-int getLikeness(std::string guessedWord, std::string secretWord)
+int getLikeness(std::string guessededWord, std::string secretWord)
 {
 	int result = 0;
 
 	for (int i = 0; i < secretWord.length(); i += 1) {
 
-		if (secretWord.at(i) == guessedWord.at(i)) {
+		if (secretWord.at(i) == guessededWord.at(i)) {
 			result += 1;
 		}
 	}
@@ -23,11 +23,11 @@ int getLikeness(std::string guessedWord, std::string secretWord)
 }
 
 // Checks to see if word is in the list
-bool wordInList(std::string guess, std::set<std::string> options)
+bool wordInList(std::string guessed, std::set<std::string> options)
 {
 	for each (std::string word in options) {
 
-		if (guess == word) {
+		if (guessed == word) {
 			return 1;
 		}
 	}
@@ -71,40 +71,40 @@ int main()
 	
 	using namespace std;
 
-	int lives = 4;
-	string guess;
+	int attempts_remaining = 4;
+	string guessed;
 
 	cout << endl << "Welcome to ROBCO Industries (TM) Termlink" << endl << "Password Required";
 
 	// Main loop
-	while (lives > 0) 
+	while (attempts_remaining > 0) 
 			{
 				// Tells player how many attempts they have left
-				if (lives > 1)
+				if (attempts_remaining > 1)
 				{
-					cout << endl << "Attempts Remaining: " << lives << endl << endl;
-					cin >> guess;
-					lives -= 1;
+					cout << endl << "Attempts Remaining: " << attempts_remaining << endl << endl;
+					cin >> guessed;
+					attempts_remaining -= 1;
 				}
 				else 
 				{
-					cout << endl << "Attempts Remaining: " << lives << endl
+					cout << endl << "Attempts Remaining: " << attempts_remaining << endl
 					<< "I Have a bad feeling about this" << endl << endl;
-					cin >> guess;
-					lives -= 1;
+					cin >> guessed;
+					attempts_remaining -= 1;
 				}
 
 				// Checks if word is in list
-				if (wordInList(guess, options)) 
+				if (wordInList(guessed, options)) 
 				{									
 					// Checks if word is the secret word
-					if (guess == secret) 
+					if (guessed == secret) 
 					{
 						cout << "Password Accepted!" << endl << "The force is strong with you" << endl;
-						lives = 0;
+						attempts_remaining = 0;
 					}
 
-					else if (lives == 0) 
+					else if (attempts_remaining == 0) 
 					{
 						cout << "0 attempts remaining, access denied" << endl << "I find your lack of skill disturbing" << endl << 
 							"           _.-'~~~~~~`-._ " << endl <<
@@ -124,29 +124,29 @@ int main()
 					}
 					else 
 					{
-						cout << "Entry denied" << endl << "Likeness = " << getLikeness(guess, secret);
+						cout << "Entry denied" << endl << "Likeness = " << getLikeness(guessed, secret);
 					}
 
-					if (getLikeness(guess, secret) == 0)
+					if (getLikeness(guessed, secret) == 0)
 					{
-						if (lives == 3)
+						if (attempts_remaining == 3)
 						{
 							cout << endl << "Once you start down the dark path, forever will it dominate your destiny";
 						}
 
-						if (lives == 2)
+						if (attempts_remaining == 2)
 						{
 							cout << endl << "Patience you must have my yong padawan";
 						}
 						
 					}
 
-					if (getLikeness(guess, secret) == 2)
+					if (getLikeness(guessed, secret) == 2)
 					{
 						cout << endl << "Powerful you have become, the dark side I sense in you";
 					}
 
-					if (getLikeness(guess, secret) == 1)
+					if (getLikeness(guessed, secret) == 1)
 					{
 						cout << endl << "Do or do not. There is no try";
 					}
