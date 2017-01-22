@@ -6,17 +6,18 @@
 
 const int wordlength = 5;
 const int numberOfWords = 15;
-int lives = 4;
+
 
 int getlikeness(std::string guessedWord, std::string secretWord)
 {
+	int i;
 	int result = 0;
-		for (int i = 0; i < secretWord.length(); i++)
+		for (i = 0; i < secretWord.length(); i++)
 		{
-			if (secretWord.at(i) = guessedWord.at(i))
-			{
+			if (secretWord.at(i) == guessedWord.at(i))
+				
 				result++;
-			}
+			
 		}
 
 		return result;
@@ -62,8 +63,10 @@ int main()
 	int Likeness = 0;
 	std::string input;
 
+	int lives = 4;
+
 	//Only runs loop while the player has lives left
-	while (lives <= 4)
+	while (lives >= 0)
 	{
 		correctguess = false;
 		while (correctguess == false)
@@ -89,6 +92,7 @@ int main()
 		// Gets the likeness of value of the player's guess against the secret word, by calling the created function
 		Likeness = getlikeness(input, secret);
 		std::cout << "Likeness score was = " << Likeness << "/" << wordlength << std::endl;
+		
 		// Checks if the inputted guess was correct
 		if (Likeness == wordlength)
 		{
