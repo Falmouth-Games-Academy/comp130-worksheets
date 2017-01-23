@@ -18,12 +18,12 @@ int main()
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
 		// TODO: Map the y coordinate into the range minY to maxY
-		//double y0 =
+		double y0 = PixelY / image.width * (minY - maxY) + minY;
 
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
 			// TODO: Map the x coordinate into the range minX to maxX
-			//double x0 =
+			double x0 = PixelX / image.width * (minX - maxX) + minX;
 
 			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			// The code below simply fills the screen with random pixels
