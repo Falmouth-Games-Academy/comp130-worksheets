@@ -56,7 +56,7 @@ int main()
 
 	while (guessremain < 4){
 		std::cout << "\nPlease enter your guess\n";
-		std::transform(cout.begin(), str.end(),str.begin(), ::toupper);
+		std::transform(cout.begin(), cout.end(),cout.begin(), ::toupper);
 		std::cin >> guess;
 		std::set<std::string>::iterator Counter = options.find(guess);
 		
