@@ -16,12 +16,12 @@ int likeness(string wordGuessed, string secretWord)
 {
 	int result = 0;
 
-		for (int i = 0; i <= (secretWord.length() - 1); i++)
+		for (int i = 0; i < (secretWord.length()); i++)
 		{
-			if (secretWord.at(i) == wordGuessed.at(i))
-			{
-				result ++;
-			}
+		if (secretWord.at(i) == wordGuessed.at(i))
+		{
+			result ++;
+		}
 	}
 	return result;
 }
@@ -33,10 +33,10 @@ bool listedWord(string userInput, set<string> options)
 	{
 		if (userInput == word)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 int main()
@@ -107,11 +107,16 @@ int main()
 					cout << "Likeness = " << likeness(wordGuessed, secret) << endl;
 				}
 			}
-		else
-		{
-			cout << endl << "Word not in list" << endl;
-		}
+	else
+	{
+		cout << endl << "Word not in list" << endl;
+	}
 	
+			if (turnsLeft == 0)
+			{
+				cout << "The word was : " <<  secret << endl;
+			}
+
 	}
 
     return 0;
