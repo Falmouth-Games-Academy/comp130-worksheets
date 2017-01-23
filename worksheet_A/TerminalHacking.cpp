@@ -64,7 +64,7 @@ int main()
 				notGuessed = false;
 			}
 
-			// Otherwise if the guess is wrong, reduce tries left by 1
+			// If the guess is wrong, reduce tries left by 1
 			else 
 			{
 				guessesLeft -= 1;
