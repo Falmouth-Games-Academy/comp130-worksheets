@@ -66,10 +66,6 @@ int main()
 
 		for each (std::string word in options)
 		{	
-			/* Old invaild guess check
-			size_t setSearch = word.find(guess);
-			if (setSearch != std::string::npos) {
-			*/
 			if(guess== word){
 				WordInList = true;
 			}
@@ -101,11 +97,9 @@ int main()
 int likeness(std::string secretWord, std::string guessWord)
 {
 	int likeness = 0;
-	const char *SecrWord = secretWord.c_str();
-	const char *GuesWord = guessWord.c_str();
 	int len = guessWord.length();
 	for (int i = 0; i < len; i++){	
-		if (SecrWord[i] == GuesWord[i]){
+		if (secretWord[i] == guessWord[i]){
 			likeness++;
 		}
 
