@@ -7,6 +7,18 @@
 const int wordLength = 5;
 const int numberOfWords = 15;
 
+int getLikeness(std::string guessword, std::string password)
+{
+	int score = 0;
+
+	for (int i = 0; i < wordLength; i++) {
+		if (guessword.at(i) == password.at(i)) {
+			score++;
+		}
+	}
+	return score;
+}
+
 int main()
 {
 	// Seed the random number generator with the current time,
@@ -40,6 +52,31 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+
+	std::string inputWord;
+	bool winGame = false;
+
+	std::cout << "The password is " << secret << "\n";
+
+	for (int numLives = 5; numLives > 0; numLives = numLives - 1) {
+		std::getline(std::cin, inputWord);
+		int output = getLikeness(inputWord, secret);
+
+		std::cout << "Your score is: " << output << "\n";
+
+
+
+		if (output == 5) {
+			std::cout << "You win!";
+			numLives = 0;
+			winGame = true;
+		}
+	}
+
+	if (winGame == false) {
+		std::cout << "You have run out of lives. You lose";
+	}
+	std::getline(std::cin, inputWord);
 
     return 0;
 }
