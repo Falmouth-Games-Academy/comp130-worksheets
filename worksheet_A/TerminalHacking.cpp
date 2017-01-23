@@ -3,9 +3,13 @@
 
 #include "stdafx.h"
 #include "WordList.h"
+#include <stdio.h>
+#include <set>
+
 
 const int wordLength = 5;
 const int numberOfWords = 15;
+int likeness(std::string secretWord, std::string guessWord);
 
 int main()
 {
@@ -41,6 +45,66 @@ int main()
 
 	// TODO: implement the rest of the game
 
+	// initialise variables
+	bool WordInList = false;
+	std::cout << secret;
+	std::string guess;
+	int lives = 4;
+	std::string result = "Lost";
+
+	// main game loop
+	while (lives > 0) 
+	{
+
+		// Ask for user guess
+		std::cout << " what is your guess?" << std::endl;
+		std::cin >> guess;
+
+		// Check to see if guess is in word set
+
+
+
+		for each (std::string word in options)
+		{	
+			if(guess== word){
+				WordInList = true;
+			}
+		}
+
+		// Calculates likeness if guess is valid
+		if (WordInList == true){
+			int likenessScore = likeness(secret, guess);
+			if (likenessScore == wordLength){
+				std::cout << "Gz Noob! You had " << lives << " lives remaining!" << std::endl;
+				result = "Won";
+				lives = 0;
+			}
+
+			else{
+				lives -= 1;
+				std::cout << "Your Likeness Score was: " << likenessScore << std::endl;
+			}
+		}
+		else {
+			std::cout << "invalid guess, try again!" << std::endl;
+		}
+	}
+	std::cout << "Game Over You " << result;
     return 0;
 }
+
+// function to calculate likeness
+int likeness(std::string secretWord, std::string guessWord)
+{
+	int likeness = 0;
+	int len = guessWord.length();
+	for (int i = 0; i < len; i++){	
+		if (secretWord[i] == guessWord[i]){
+			likeness++;
+		}
+
+	}
+	return likeness;
+}
+
 
