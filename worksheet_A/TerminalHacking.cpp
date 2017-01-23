@@ -6,6 +6,19 @@
 
 const int wordLength = 5;
 const int numberOfWords = 15;
+int Lives = 4;
+int Score = 0;
+
+int GetLikeness(std::string guessedword, std::string secretword)
+{
+	int Result = 0
+	for (int i = 0; i < wordLength; i++)
+	{
+		if (guessword.at(i) == secretword.at(i))
+			Result++;
+	}
+	return Result;
+}
 
 int main()
 {
@@ -40,7 +53,6 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
-
     return 0;
 }
 
