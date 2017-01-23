@@ -12,7 +12,7 @@ int Score = 0;
 int GetLikeness(std::string guessedword, std::string secretword)
 {
 	int Result = 0
-	for (int i = 0; i < wordlength; i++)
+	for (int i = 0; i < wordLength; i++)
 	{
 		if (guessword.at(i) == secretword.at(i))
 			Result++;
@@ -53,7 +53,6 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
-
     return 0;
 }
 
