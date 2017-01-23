@@ -64,7 +64,7 @@ int main()
 				notGuessed = false;
 			}
 
-			// Otherwise if the guess is wrong
+			// Otherwise if the guess is wrong, reduce tries left by 1
 			else 
 			{
 				guessesLeft -= 1;
@@ -74,7 +74,7 @@ int main()
 		}
 	}
 
-	// Program displays as shown then exits if player fails with all their guesses.
+	// If all guesses are used up, program displays as shown then exits
 	cout << "Access denied" << endl;
 
     return 0;
