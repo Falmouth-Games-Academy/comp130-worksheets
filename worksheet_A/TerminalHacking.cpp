@@ -16,11 +16,19 @@ int Likeness = 0;
 string Guess = "";
 
 void HackingIntro();
-string GetPassword();
-void Correct();
-void LikenessMatch();
 
+int GetLikeness(string Guess, string SecretWord)
+	{
+		int i = 0;
+		int PlayerGuesses = 0;
+		for (i = 0; i < wordLength; i++)
+		{
+			if (Guess.at(i) == SecretWord.at(i))
+				PlayerGuesses++;
+		}
 
+		return PlayerGuesses;
+	}
 
 int main()
 {
@@ -59,13 +67,20 @@ int main()
 
 	while (PlayerLives > 0) 
 	{
-		GetPassword();
-		Correct();
+		cout << "Please Enter Password\n";
+		//getline(cin, Guess);
+		cin >> Guess;
+		Likeness = GetLikeness(Guess, secret);
+		if (Likeness == wordLength)
 		{
-			else
+			cout << "Correct Password" << endl;
+			return 0;
 		}
-
-		LikenessMatch();
+		
+		PlayerLives -= 1;
+		cout << Likeness << "Letters Match" << endl;
+		cout << "You Have " << PlayerLives << "lives remaining" << endl;
+		cout << endl;
 	}
 
     return 0;
@@ -75,48 +90,8 @@ void HackingIntro()
 {
 	//Create Constant Word Length
 	cout << "Welcome To The Terminal.\n";
-	cout << "Password Has A Length Of " << WordLength << endl;
+	cout << "Password Has A Length Of " << wordLength << endl;
 	cout << endl;
 	return;
 }
 
-//Player inputs Guess/Password
-string GetPassword()
-{
-	cout << "Please Enter Password\n";
-	getline(cin, Guess);
-	Likeness = LikenessCheck(Guess, SecretWord);
-	if (Likeness == wordLength)
-	return Guess;
-}
-
-
-int GetLikeness(string Guess, string SecretWord)
-	{
-		int i = 0;
-		int PlayerGuesses = 0;
-		for (i = 0; i < wordLength; i++)
-		{
-			if (Guess.at(i) == SecretWord.at(i))
-				PlayerGuesses++;
-		}
-
-		return PlayerGuesses;
-	}
-
-void Correct() 
-		{
-			cout << "Correct Password" << endl;
-			cin >> Guess;
-			PlayerLives = 0;
-			return;
-		}
-
-void LikenessMatch()
-		{
-			PlayerLives -= 1;
-			cout << Likeness << "Letters Match" << endl;
-			cout << "You Have " << PlayerLives << "lives remaining" << endl;
-			cout << endl;
-			return;
-		}
