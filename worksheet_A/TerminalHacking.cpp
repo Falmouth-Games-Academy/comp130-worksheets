@@ -4,8 +4,22 @@
 #include "stdafx.h"
 #include "WordList.h"
 
-const int WordLength = 5;
-const int NumberOfWords = 15;
+const int wordLength = 5;
+const int numberOfWords = 15;
+
+// Function returns likeness score
+int GetLikeness(std::string guessedWord, std::string secret)
+{
+	int score = 0;
+
+	// Checks letters from guessed word against corresponding letters of secret word
+	for (int check = 0; check < wordLength; check++)
+	{
+		if (guessedWord.at(check) == secret.at(check))
+			score++;
+	}
+	return score;
+}
 
 // Appliction entry point
 int main()
@@ -15,7 +29,7 @@ int main()
 	srand(static_cast<unsigned int>(time(nullptr)));
 
 	// Initialise word list
-	WordList words(WordLength);
+	WordList words(wordLength);
 
 	// Choose secret word
 	std::string secret = words.getRandomWord();
@@ -28,7 +42,7 @@ int main()
 
 	// Fill the set with more words
 	// Using a set for options guarantees that the elements are all different
-	while (options.size() < NumberOfWords)
+	while (options.size() < numberOfWords)
 	{
 		std::string word = words.getRandomWord();
 		options.insert(word);
@@ -41,21 +55,21 @@ int main()
 	}
 	
 	// Intialize variables
-	std::string GuessedWord = "";
-	int Likeness = 0;
-	int Guesses = 0;
+	std::string guessedWord = "";
+	int likeness = 0;
+	int guesses = 0;
 
 	// Main Game Loop
-	while (Guesses < 4)
+	while (guesses < 4)
 	{
 		std::cout << "\nPlease enter your guess (in capitals):\n";
-		std::cin >> GuessedWord;
+		std::cin >> guessedWord;
 
 		// Check guessed word is in generated word list
-		std::set<std::string>::iterator Counter = options.find(GuessedWord);
+		std::set<std::string>::iterator counter = options.find(guessedWord);
 
 		// If guessed word not in list, inform player and start again
-		if (Counter == options.end())
+		if (counter == options.end())
 		{
 			std::cout << "Invalid Guess." << std::endl;
 			continue;
@@ -64,11 +78,11 @@ int main()
 		else
 		{
 			// Print Likeness score to player (get from GetLikeness() function)
-			Likeness = GetLikeness(GuessedWord, secret);
-			std::cout << "\nScore: " << Likeness << " out of " << WordLength << "\n";
+			likeness = GetLikeness(guessedWord, secret);
+			std::cout << "\nScore: " << likeness << " out of " << wordLength << "\n";
 
 			// If guess is right exit game
-			if (Likeness == WordLength)
+			if (likeness == wordLength)
 			{
 				std::cout << "\nYou win!\n";
 				exit(0);
@@ -77,9 +91,9 @@ int main()
 			// If guess is wrong display number of guesses left
 			else
 			{
-				Guesses++;
-				std::cout << "\nYou have " << 4 - Guesses << " guesses left. \n";
-				Likeness = 0;
+				guesses++;
+				std::cout << "\nYou have " << 4 - guesses << " guesses left. \n";
+				likeness = 0;
 			}
 
 		}
@@ -91,17 +105,3 @@ int main()
 	return 0;
 }
 
-// Function returns likeness score
-int GetLikeness(std::string guessedWord, std::string secret)
-{
-	int Check;
-	int score = 0;
-
-	// Checks letters from guessed word against corresponding letters of secret word
-	for (Check = 0; Check < WordLength; Check++)
-	{
-		if (guessedWord.at(Check) == secret.at(Check))
-			score++;
-	}
-	return score;
-}
