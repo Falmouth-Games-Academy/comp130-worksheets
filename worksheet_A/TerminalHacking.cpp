@@ -61,11 +61,16 @@ int main()
 		std::cin >> guess;
 
 		// Check to see if guess is in word set
+
+
+
 		for each (std::string word in options)
-		{
+		{	
+			/* Old invaild guess check
 			size_t setSearch = word.find(guess);
 			if (setSearch != std::string::npos) {
-
+			*/
+			if(guess== word){
 				WordInList = true;
 			}
 		}
