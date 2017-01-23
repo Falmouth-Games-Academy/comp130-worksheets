@@ -8,6 +8,7 @@ int wordLength = 5;
 const int numberOfWords = 15;
 int livesRemaining = 4;
 int difficulty = 0;
+bool validWord;
 std::string playerGuess;
 
 int checkSimilarity(std::string secret, std::string player)
@@ -24,6 +25,8 @@ int checkSimilarity(std::string secret, std::string player)
 
 	return similarityScore;
 }
+
+
 
 int main()
 {
@@ -50,6 +53,9 @@ int main()
 		wordLength = 5;
 		std::cout << "Invalid choice selected, Terminal will be set to Very Easy." << std::endl;
 	}
+
+	int similarityScore;
+
 	// Seed the random number generator with the current time,
 	// to ensure different results each time the program is run
 	srand(static_cast<unsigned int>(time(nullptr)));
@@ -68,8 +74,6 @@ int main()
 
 	// Fill the set with more words
 	// Using a set for options guarantees that the elements are all different
-	
-	int similarityScore;
 
 	while (options.size() < numberOfWords)
 	{
@@ -89,35 +93,38 @@ int main()
 	{
 		std::cout << "Please input a guess using only capital letters." << std::endl;
 		std::cin >> playerGuess;
-		
 		for each (std::string word in options)
 		{
 			if (playerGuess != word)
 			{
-				std::cout << "Invalid suggestion" << std::endl;
+				validWord = false;
 			}
+
 			else
 			{
-				pass;
-			}	
-			
-		}	
-		
-		if (playerGuess != secret)
-		{
-			livesRemaining -= 1;
-			std::cout << "Number of lives remaning " << livesRemaining << std::endl;
-			similarityScore = checkSimilarity(secret, playerGuess);
-			std::cout << "Similarity " << similarityScore << "/" << wordLength << std::endl;
-
-
+				validWord = true;
+			}
 		}
-		
-		else
+		if (validWord == true)
 		{
-			std::cout << "You win the game" << std::endl << "Type Quit to exit" << std::endl;
-			std::cin >> playerGuess;
-			livesRemaining = 0;
+			if (playerGuess != secret)
+			{
+				livesRemaining -= 1;
+				std::cout << "Number of lives remaning " << livesRemaining << std::endl;
+				similarityScore = checkSimilarity(secret, playerGuess);
+				std::cout << "Similarity " << similarityScore << "/" << wordLength << std::endl;
+			}
+
+			else
+			{
+				std::cout << "You win the game" << std::endl << "Type Quit to exit" << std::endl;
+				std::cin >> playerGuess;
+				livesRemaining = 0;
+			}
+		}
+		else 
+		{
+			std::cout << "Your input is invalid" << std::endl;
 		}
 
 	}
