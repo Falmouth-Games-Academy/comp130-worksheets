@@ -41,6 +41,37 @@ int main()
 
 	// TODO: implement the rest of the game
 
+	// variables
+	std::string input;
+	int IncorrectGuess = 0;
+
+	while (IncorrectGuess < 4)
+	{
+			//prompts user for input
+			std::cout << "What's your guess?" << std::endl;
+			std::cin input; 
+
+		
+	}
+
+	
+
     return 0;
 }
 
+// Function thats gives the likeness score after a guess
+int GetLikeness(std::string guessedWord, std::string secretWord)
+{
+		int matches = 0; 
+
+		// Compares characters from both guessed and secret words 
+		
+		for (int i = 0; i < wordLength; i++)
+		{
+			// Adds 1 to likeness for every correct character 
+			if (guessedWord.at(i) == secretWord(i))
+				score++;
+
+		}
+		return matches
+}
