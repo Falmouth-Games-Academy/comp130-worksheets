@@ -89,6 +89,20 @@ int main()
 	{
 		std::cout << "Please input a guess using only capital letters." << std::endl;
 		std::cin >> playerGuess;
+		
+		for each (std::string word in options)
+		{
+			if (playerGuess != word)
+			{
+				std::cout << "Invalid suggestion" << std::endl;
+			}
+			else
+			{
+				pass;
+			}	
+			
+		}	
+		
 		if (playerGuess != secret)
 		{
 			livesRemaining -= 1;
