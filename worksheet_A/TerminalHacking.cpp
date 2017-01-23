@@ -97,7 +97,7 @@ int main()
 		// Checks if the inputted guess was correct
 		if (LikenessScore == wordlength)
 		{
-			std::cout << "You Win!" << std::endl;
+			std::cout << "You Win!\n";
 			return 0;
 		}
 		
