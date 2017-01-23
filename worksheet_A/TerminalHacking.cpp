@@ -7,6 +7,8 @@
 const int wordLength = 5;
 const int numberOfWords = 15;
 
+using namespace std;
+
 int main()
 {
 	// Seed the random number generator with the current time,
@@ -40,6 +42,40 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+
+	// Initialising variables
+	int guessesLeft = 4;
+	string guess;
+
+	// Game loop (incomplete)
+	while (guessesLeft > 0)
+	{
+		bool notGuessed = true;
+		while (notGuessed)
+		{
+			// Player input prompt
+			cout << "Password required";
+			cin >> guess;
+
+			// Checks if the guess is correct
+			if (guess == secret)
+			{
+				cout << "Access granted" << endl;
+				notGuessed = false;
+			}
+
+			// Checks if the guess is wrong
+			else 
+			{
+				guessesLeft -= 1;
+				cout << "You have " << guessesLeft << " guesses remaining." << endl;
+			}
+
+		}
+	}
+
+	// Program displays as shown then exits if player fails with all their guesses.
+	cout << "Access denied" << endl;
 
     return 0;
 }
