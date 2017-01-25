@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "WordList.h"
 
+using namespace std;
 const int wordLength = 5;
 const int numberOfWords = 15;
 int playerLives = 4; 
@@ -35,10 +36,10 @@ int main()
 	WordList words(wordLength);
 
 	// Choose secret word
-	std::string secret = words.getRandomWord();
+	string secret = words.getRandomWord();
 
 	// Create a set to hold the list of options
-	std::set<std::string> options;
+	set<string> options;
 
 	// Put the secret word in the set
 	options.insert(secret);
@@ -47,34 +48,34 @@ int main()
 	// Using a set for options guarantees that the elements are all different
 	while (options.size() < numberOfWords)
 	{
-		std::string word = words.getRandomWord();
+		string word = words.getRandomWord();
 		options.insert(word);
 	}
 
 	// Display all words
-	for each (std::string word in options)
+	for each (string word in options)
 	{
-		std::cout << word << std::endl;
+		cout << word << endl;
 	}
 	
 	// Game loop
 	while (playerLives > 0) 
 	{
-		std::cout << "Choose a word... ";
-		std::cin >> guessWord;
+		cout << "Choose a word... ";
+		cin >> guessWord;
 		simScore = simCheck(guessWord, secret);
 		if (simScore == wordLength)
 		{
-			std::cout << "Correct" << std::endl;
-			std::cin >> guessWord;
+			cout << "Correct" << endl;
+			cin >> guessWord;
 			playerLives = 0;
 		}
 		else
 		{
 			playerLives -= 1;
-			std::cout << simScore << " Letters are correct" << std::endl;
-			std::cout << "You have " << playerLives << " lives remaining" << std::endl;
-			std::cout << std::endl;
+			cout << simScore << " Letters are correct" << endl;
+			cout << "You have " << playerLives << " lives remaining" << endl;
+			cout << endl;
 		}
 	}
 	
