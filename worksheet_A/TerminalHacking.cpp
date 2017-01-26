@@ -108,21 +108,7 @@ int main()
 
 					else if (attempts_remaining == 0) 
 					{
-						cout << "0 attempts remaining, access denied" << endl << "I find your lack of skill disturbing" << endl << 
-							"           _.-'~~~~~~`-._ " << endl <<
-							"          /      ||      \ " << endl <<
-							"         /       ||       \ " << endl <<
-							"        |        ||        | " << endl <<
-							"        | _______||_______ | " << endl <<
-							"        |/ ----- \/ ----- \| " << endl <<
-							"       /  (     )  (     )  \ " << endl <<
-							"      / \  ----- () -----  / \ " << endl <<
-							"     /   \      /||\      /   \ " << endl <<
-							"    /     \    /||||\    /     \ " << endl <<
-							"   /       \  /||||||\  /        " << endl <<
-							"  /_        \o========o/        _\ " << endl <<
-							"    `--...__|`-._  _.-'|__...--'" << endl <<
-							"            |    `'    |             " << endl;
+						cout << "0 attempts remaining, access denied" << endl << "I find your lack of skill disturbing" << endl;
 					}
 					else 
 					{
