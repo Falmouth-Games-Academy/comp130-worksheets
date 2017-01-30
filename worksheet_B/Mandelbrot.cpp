@@ -55,6 +55,18 @@ int main()
 				image(pixelX, pixelY, 0, 1) = 0; // green component
 				image(pixelX, pixelY, 0, 2) = 0; // blue component
 			}
+			else if (iteration < 200)
+			{
+				image(pixelX, pixelY, 0, 0) = 122; // red component
+				image(pixelX, pixelY, 0, 1) = 20; // green component
+				image(pixelX, pixelY, 0, 2) = 20; // blue component
+			}
+			else if (iteration < 600)
+			{
+				image(pixelX, pixelY, 0, 0) = 70; // red component
+				image(pixelX, pixelY, 0, 1) = 30; // green component
+				image(pixelX, pixelY, 0, 2) = 255; // blue component
+			}
 		}
 
 		// Uncomment this line to redisplay the image after each row is generated
