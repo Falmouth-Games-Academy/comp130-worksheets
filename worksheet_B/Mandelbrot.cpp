@@ -18,7 +18,7 @@ int main()
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
 		// TODO: Map the y coordinate into the range minY to maxY
-		double y0 = ((pixelY/image.width()) * (maxY - minY) + minY);
+		double y0 = ((pixelY / image.width()) * (maxY - minY) + minY);
 
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
@@ -28,18 +28,41 @@ int main()
 			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			// The code below simply fills the screen with random pixels
 
+			int iteration = 0;
+			int max_iteration = 1000;
+			double x = 0.0;
+			double y = 0.0;
 
+			while ((x*x + y*y < 2 * 2) || iteration < max_iteration)
+			{
+				int x_storage = x*x - y*y + x0;
+				y = 2 * x*y + y0;
+				x = x_storage;
+				iteration++;
+			}
 
 			// Write the pixel
 			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
-			image(pixelX, pixelY, 0, 0) = rand(); // red component
-			image(pixelX, pixelY, 0, 1) = rand(); // green component
-			image(pixelX, pixelY, 0, 2) = rand(); // blue component
+
+			int red = 255;
+			int green = 200;
+			int blue = 180;
+
+			image(pixelX, pixelY, 0, 0) = (red); // red component
+			image(pixelX, pixelY, 0, 1) = (green); // green component
+			image(pixelX, pixelY, 0, 2) = (blue); // blue component
+
+			if (iteration < max_iteration)
+			{
+				image(pixelX, pixelY, 0, 0) = (0); // red component
+				image(pixelX, pixelY, 0, 1) = (0); // green component
+				image(pixelX, pixelY, 0, 2) = (0); // blue component
+			}
+
+			// Uncomment this line to redisplay the image after each row is generated
+			display.display(image);
 		}
 
-		// Uncomment this line to redisplay the image after each row is generated
-		// Useful if your program is slow and you want to verify that it is actually doing something
-		//display.display(image);
 	}
 
 	// Display the complete image
