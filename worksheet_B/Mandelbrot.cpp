@@ -16,9 +16,7 @@ int main()
 
 	// Generate the image
 	float imageWidth = image.width();
-	int iteration = 0;
-	int max_iteration = 1000;
-	int R = 30, G = 20, B = 10;
+	int R =250, G = 0, B = 0;
 
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
@@ -34,6 +32,8 @@ int main()
 			// The code below simply fills the screen with random pixels
 			double x = 0.0;
 			double y = 0.0;
+			int iteration = 0;
+			int max_iteration = 1000;
 
 			while ((x*x + y*y < 2 * 2) && (iteration < max_iteration))
 			{
@@ -48,6 +48,13 @@ int main()
 			image(pixelX, pixelY, 0, 0) = R; // red component
 			image(pixelX, pixelY, 0, 1) = G; // green component
 			image(pixelX, pixelY, 0, 2) = B; // blue component
+
+			if (iteration == max_iteration)
+			{
+				image(pixelX, pixelY, 0, 0) = 0; // red component
+				image(pixelX, pixelY, 0, 1) = 0; // green component
+				image(pixelX, pixelY, 0, 2) = 0; // blue component
+			}
 		}
 
 		// Uncomment this line to redisplay the image after each row is generated
