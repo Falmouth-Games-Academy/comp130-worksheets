@@ -15,24 +15,39 @@ int main()
 	const double minX = -2, maxX = 1, minY = -1.5, maxY = 1.5;
 
 	// Generate the image
+	float imageWidth = image.width();
+	int iteration = 0;
+	int max_iteration = 1000;
+	int R = 30, G = 20, B = 10;
+
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
 		// TODO: Map the y coordinate into the range minY to maxY
-		//double y0 =
+		double y0 = ((pixelY / imageWidth) * (maxY - minY) + minY);
 
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
 			// TODO: Map the x coordinate into the range minX to maxX
-			//double x0 =
+			double x0 = ((pixelX / imageWidth) * (maxX - minX) + minY);
 
 			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			// The code below simply fills the screen with random pixels
+			double x = 0.0;
+			double y = 0.0;
+
+			while ((x*x + y*y < 2 * 2) && (iteration < max_iteration))
+			{
+				int xtemp = x*x - y*y + x0;
+				y = 2 * x*y + y0;
+				x = xtemp;
+				iteration++;
+			}
 
 			// Write the pixel
 			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
-			image(pixelX, pixelY, 0, 0) = rand(); // red component
-			image(pixelX, pixelY, 0, 1) = rand(); // green component
-			image(pixelX, pixelY, 0, 2) = rand(); // blue component
+			image(pixelX, pixelY, 0, 0) = R; // red component
+			image(pixelX, pixelY, 0, 1) = G; // green component
+			image(pixelX, pixelY, 0, 2) = B; // blue component
 		}
 
 		// Uncomment this line to redisplay the image after each row is generated
