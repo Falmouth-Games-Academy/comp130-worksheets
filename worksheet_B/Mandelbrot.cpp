@@ -1,5 +1,8 @@
 #include "stdafx.h"
 
+float ImageWidth = 800.0;
+float ImageHeight = 800.0;
+
 int main()
 {
 	// Initialise the image
@@ -12,17 +15,18 @@ int main()
 	const double minX = -2, maxX = 1, minY = -1.5, maxY = 1.5;
 
 	// Generate the image
-	for (int pixelY = 0; pixelY < 800.0; pixelY++)
+	for (int pixelY = 0; pixelY < ImageHeight; pixelY++)
 	{
 		// Maps the y coordinate into the range minY to maxY
-		double y0 = ((pixelY / 800.0) * (maxY - minY) + minY);
+		double y0 = ((pixelY / ImageWidth) * (maxY - minY) + minY);
 
-		for (int pixelX = 0; pixelX < 800.0; pixelX++)
+		for (int pixelX = 0; pixelX < ImageWidth; pixelX++)
 		{
 			// Maps the x coordinate into the range minX to maxX
-			double x0 = ((pixelX / 800.0) * (maxX - minX) + minX);
+			double x0 = ((pixelX / ImageWidth) * (maxX - minX) + minX);
 
 			// The algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
+			// http://rijndael.ece.vt.edu/challenge/codesigndata/2012_assign.pdf [online at 30/01/2017]
 			double x = 0;
 			double y = 0;
 			int iteration = 0;
@@ -36,35 +40,37 @@ int main()
 			}
 
 			//Converts the colours from HSV to RGB
+			int MaxColourValue = 255;
+			int MinColourValue = 0;
 			int Red = 0;
 			int Green = 0;
 			int Blue = 0;
 
 			if (iteration <= 60)
 			{
-				Red = 255;
-				Green = (iteration / 60) * 255;
+				Blue = MaxColourValue;
+				Green = (iteration / 60) * MaxColourValue;
 			}
 			else if (iteration <= 120)
 			{
-				Red = 255 - (((iteration - 60) / 60) * 255);
-				Green = 255;
+				Blue = MaxColourValue - (((iteration - 60) / 60) * MaxColourValue);
+				Green = MaxColourValue;
 			}
 			else if (iteration <= 180)
 			{
-				Green = 255;
-				Blue = ((iteration - 120) / 60) * 255;
+				Red = MaxColourValue;
+				Blue = ((iteration - 120) / 60) * MaxColourValue;
 			}
 			else if (iteration <= 199)
 			{
-				Green = 255 - (((iteration - 60) / 60) * 255);
-				Blue = 255;
+				Red = MaxColourValue - (((iteration - 60) / 60) * MaxColourValue);
+				Blue = MaxColourValue;
 			}
 			else
 			{
-				Red = 0;
-				Green = 0;
-				Blue = 0;
+				Red = MinColourValue;
+				Green = MinColourValue;
+				Blue = MinColourValue;
 			}
 
 			// Write the pixel
