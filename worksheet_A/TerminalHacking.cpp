@@ -93,6 +93,7 @@ int main()
 	}
 	// When player reaches 4 incorrect guesses "game over" is displayed and the program exits
 	std::cout << "Game Over" << std::endl;
+	
     return 0;
 }
 
