@@ -16,24 +16,24 @@ int main()
 
 	// Generate the image
 	float imageWidth = image.width();
-	int R =250, G = 0, B = 0;
+	int R =200, G = 200, B = 200;
 
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
-		// TODO: Map the y coordinate into the range minY to maxY
+		// Map the y coordinate into the range minY to maxY
 		double y0 = ((pixelY / imageWidth) * (maxY - minY) + minY);
 
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
-			// TODO: Map the x coordinate into the range minX to maxX
+			// Map the x coordinate into the range minX to maxX
 			double x0 = ((pixelX / imageWidth) * (maxX - minX) + minY);
 
-			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
+			// Algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			// The code below simply fills the screen with random pixels
 			double x = 0.0;
 			double y = 0.0;
 			int iteration = 0;
-			int max_iteration = 1000;
+			int max_iteration = 510; // Keep this value as it is used to generate RGB values
 
 			while ((x*x + y*y < 2 * 2) && (iteration < max_iteration))
 			{
@@ -43,42 +43,41 @@ int main()
 				iteration++;
 			}
 
-			// Write the pixel
-			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
+			// Setting colours
+
+			// Determines Background colour
+			int R = 255; // Red component
+			int G = 0; // Green component
+			int B = 0; // Blue component
+
+			if (iteration > 50 && iteration < 200)
+			{
+				// Edge colour of mandlebrot
+				R = 170;
+				G = 170;
+				B = 0;
+			}
+			else if (iteration > 199)
+			{
+				// Middle colour of mandlebrot
+				R = 0;
+				G = 0;
+				B = 0;
+			}
+
+			// Applies chosen colours to each iteration
 			image(pixelX, pixelY, 0, 0) = R; // red component
 			image(pixelX, pixelY, 0, 1) = G; // green component
 			image(pixelX, pixelY, 0, 2) = B; // blue component
-
-			if (iteration == max_iteration)
-			{
-				image(pixelX, pixelY, 0, 0) = 0; // red component
-				image(pixelX, pixelY, 0, 1) = 0; // green component
-				image(pixelX, pixelY, 0, 2) = 0; // blue component
-			}
-			else if (iteration < 200)
-			{
-				image(pixelX, pixelY, 0, 0) = 122; // red component
-				image(pixelX, pixelY, 0, 1) = 20; // green component
-				image(pixelX, pixelY, 0, 2) = 20; // blue component
-			}
-			else if (iteration < 600)
-			{
-				image(pixelX, pixelY, 0, 0) = 70; // red component
-				image(pixelX, pixelY, 0, 1) = 30; // green component
-				image(pixelX, pixelY, 0, 2) = 255; // blue component
-			}
 		}
 
-		// Uncomment this line to redisplay the image after each row is generated
-		// Useful if your program is slow and you want to verify that it is actually doing something
-		//display.display(image);
 	}
 
 	// Display the complete image
 	display.display(image);
 
-	// Uncomment this line to save the image to disk
-	//image.save_bmp("mandelbrot.bmp");
+	// Save the image to disk
+	image.save_bmp("mandelbrot.bmp");
 
 	// Wait for the window to be closed
 	while (!display.is_closed())
