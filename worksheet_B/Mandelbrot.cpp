@@ -37,7 +37,7 @@ int main()
 
 			while ((x*x + y*y < 2 * 2) && (iteration < max_iteration))
 			{
-				int xtemp = x*x - y*y + x0;
+				double xtemp = x*x - y*y + x0;
 				y = 2 * x*y + y0;
 				x = xtemp;
 				iteration++;
