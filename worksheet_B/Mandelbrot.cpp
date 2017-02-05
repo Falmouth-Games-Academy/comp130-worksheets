@@ -16,7 +16,7 @@ int main()
 
 	// Generate the image
 	float imageWidth = image.width();
-	int R =200, G = 200, B = 200;
+	int R =0, G = 0, B = 0; //initialising colours
 
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
@@ -32,10 +32,12 @@ int main()
 			// The code below simply fills the screen with random pixels
 			double x = 0.0;
 			double y = 0.0;
-			int iteration = 0;
-			int max_iteration = 510; // Keep this value as it is used to generate RGB values
+			int previousPreviousIteration = 0;
+			int previousIteration = 0;
+			double iteration = 0;
+			int maxIteration = 255; // Keep this value as it is used to generate RGB values
 
-			while ((x*x + y*y < 2 * 2) && (iteration < max_iteration))
+			while ((x*x + y*y < 2 * 2) && (iteration < maxIteration))
 			{
 				double xtemp = x*x - y*y + x0;
 				y = 2 * x*y + y0;
@@ -45,27 +47,13 @@ int main()
 
 			// Setting colours
 
-			// Determines Background colour
-			int R = 255; // Red component
-			int G = 0; // Green component
-			int B = 0; // Blue component
+			// First number changes colours, iteration formula cycles through shades.
+			R = 5 - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
+			G = 10 - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
+			B = 135 - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
 
-			if (iteration > 50 && iteration < 200)
-			{
-				// Edge colour of mandlebrot
-				R = 170;
-				G = 170;
-				B = 0;
-			}
-			else if (iteration > 199)
-			{
-				// Middle colour of mandlebrot
-				R = 0;
-				G = 0;
-				B = 0;
-			}
 
-			// Applies chosen colours to each iteration
+			// Applies chosen colours
 			image(pixelX, pixelY, 0, 0) = R; // red component
 			image(pixelX, pixelY, 0, 1) = G; // green component
 			image(pixelX, pixelY, 0, 2) = B; // blue component
