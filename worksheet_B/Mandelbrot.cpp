@@ -42,15 +42,15 @@ int main()
 			int blue = 0;
 
 			if (iteration <= 60) {
-				green = 255;
-				red = (iteration / 60) * 255;
+				red = 255;
+				blue = (iteration / 60) * 255;
 			}
 			else if (iteration <= 120) {
 				red = 255;
 				green = 255 - (((iteration - 60) / 60) * 255);
 			}
 			else if (iteration <= 180) {
-				blue = 255;
+				red = 255;
 				green = 255 - (((iteration - 120) / 60) * 255);
 			}
 			else if (iteration <= 199) {
@@ -83,4 +83,3 @@ int main()
 
 	return 0;
 }
-Contact GitHub 
