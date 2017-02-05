@@ -18,15 +18,19 @@ int main()
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
 		// TODO: Map the y coordinate into the range minY to maxY
-		//double y0 =
+		double y0 = ((pixelY / 800.0) * (maxY - minY) + minY);
 
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
 			// TODO: Map the x coordinate into the range minX to maxX
-			//double x0 =
+			double x0 = ((pixelX / 800.0) * (maxX - minX) + minX);
 
 			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			// The code below simply fills the screen with random pixels
+			double x = 0.0;
+			double y = 0.0;
+			int iteration = 0.0;
+			int MaxIteration = 200;
 
 			// Write the pixel
 			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
@@ -44,7 +48,7 @@ int main()
 	display.display(image);
 
 	// Uncomment this line to save the image to disk
-	//image.save_bmp("mandelbrot.bmp");
+	image.save_bmp("mandelbrot.bmp");
 
 	// Wait for the window to be closed
 	while (!display.is_closed())
