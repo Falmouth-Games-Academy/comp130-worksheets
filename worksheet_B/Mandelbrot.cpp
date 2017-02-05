@@ -1,15 +1,127 @@
 // Mandelbrot.cpp : Defines the entry point for the console application.
 //
 
-/* while (x*x + y*y < 2*2  AND  iteration < max_iteration) {
-    xtemp = x*x - y*y + x0
-    y = 2*x*y + y0
-    x = xtemp
-    iteration = iteration + 1 
-*/
-
 #include "stdafx.h"
-#include <math.h>
+// HSV to RGB 
+// Source: "http://stackoverflow.com/questions/3018313/algorithm-to-convert-rgb-to-hsv-and-hsv-to-rgb-in-range-0-255-for-both"
+typedef struct {
+	double r;       // percent
+	double g;       // percent
+	double b;       // percent
+} rgb;
+
+typedef struct {
+	double h;       // angle in degrees
+	double s;       // percent
+	double v;       // percent
+} hsv;
+
+static hsv   rgb2hsv(rgb in);
+static rgb   hsv2rgb(hsv in);
+
+hsv rgb2hsv(rgb in)
+{
+	hsv         out;
+	double      min, max, delta;
+
+	min = in.r < in.g ? in.r : in.g;
+	min = min  < in.b ? min : in.b;
+
+	max = in.r > in.g ? in.r : in.g;
+	max = max  > in.b ? max : in.b;
+
+	out.v = max;                                // v
+	delta = max - min;
+	if (delta < 0.00001)
+	{
+		out.s = 0;
+		out.h = 0; // undefined, maybe nan?
+		return out;
+	}
+	if (max > 0.0) { // NOTE: if Max is == 0, this divide would cause a crash
+		out.s = (delta / max);                  // s
+	}
+	else {
+		// if max is 0, then r = g = b = 0              
+		// s = 0, v is undefined
+		out.s = 0.0;
+		out.h = NAN;                            // its now undefined
+		return out;
+	}
+	if (in.r >= max)                           // > is bogus, just keeps compilor happy
+		out.h = (in.g - in.b) / delta;        // between yellow & magenta
+	else
+		if (in.g >= max)
+			out.h = 2.0 + (in.b - in.r) / delta;  // between cyan & yellow
+		else
+			out.h = 4.0 + (in.r - in.g) / delta;  // between magenta & cyan
+
+	out.h *= 60.0;                              // degrees
+
+	if (out.h < 0.0)
+		out.h += 360.0;
+
+	return out;
+}
+
+
+rgb hsv2rgb(hsv in)
+{
+	double      hh, p, q, t, ff;
+	long        i;
+	rgb         out;
+
+	if (in.s <= 0.0) {       // < is bogus, just shuts up warnings
+		out.r = in.v;
+		out.g = in.v;
+		out.b = in.v;
+		return out;
+	}
+	hh = in.h;
+	if (hh >= 360.0) hh = 0.0;
+	hh /= 60.0;
+	i = (long)hh;
+	ff = hh - i;
+	p = in.v * (1.0 - in.s);
+	q = in.v * (1.0 - (in.s * ff));
+	t = in.v * (1.0 - (in.s * (1.0 - ff)));
+
+	switch (i) {
+	case 0:
+		out.r = in.v;
+		out.g = t;
+		out.b = p;
+		break;
+	case 1:
+		out.r = q;
+		out.g = in.v;
+		out.b = p;
+		break;
+	case 2:
+		out.r = p;
+		out.g = in.v;
+		out.b = t;
+		break;
+
+	case 3:
+		out.r = p;
+		out.g = q;
+		out.b = in.v;
+		break;
+	case 4:
+		out.r = t;
+		out.g = p;
+		out.b = in.v;
+		break;
+	case 5:
+	default:
+		out.r = in.v;
+		out.g = p;
+		out.b = q;
+		break;
+	}
+	return out;
+}
 
 int main()
 {
@@ -22,69 +134,53 @@ int main()
 	// Minimum and maximum coordinates for the fractal
 	const double minX = -2, maxX = 1, minY = -1.5, maxY = 1.5;
 
-	int max_iteration = 1000;
-	int iteration = 0;
-
 	// Generate the image
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
 		// TODO: Map the y coordinate into the range minY to maxY
-		//double y0 =
-		double y0 = (maxY - minY) * (pixelY * 800) + minY;
+		double y0 = (maxY - minY) * (pixelY / 800.0) + minY;
 
-		for (int pixelX = 0; pixelX < image.width(); pixelX++)
+		for (int pixelX = 0.0; pixelX < image.width(); pixelX++)
 		{
 			// TODO: Map the x coordinate into the range minX to maxX
-			//double x0 =
-
-			double x0 = (maxX - minX) * (pixelX * 800) + minX;
+			double x0 = (maxX - minX) * (pixelX / 800.0) + minX;
 
 			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
-			// The code below simply fills the screen with random pixels
-			int x = pixelX + 1;
-			x = (pixelX*pixelX) - (pixelY*pixelY) - y0;
-			int y = pixelY + 1;
-			y = (2 * pixelX * pixelY) + y0;
-			
-			int colour;
-			colour = (pixelX*pixelX) + (pixelY*pixelY);
+			double y = 0.0;
+			double x = 0.0;
+			double iteration = 0.0;
+			double max_iteration = 200;
 
-			int r = 255, g = 255, b = 255;
-
-			int H = iteration, S = 1, V = 1;
-			void hsv2rgb(H, S, V)
+			while (iteration < max_iteration && x * x + y * y < 2*2 )
 			{
-				double r, g, b;
+				double temp_x = x * x - y * y + x0;
+				y = (2 * x * y) + y0;
+				x = temp_x;
+				++iteration;
 
-				double i = floor(H * 6);
-				double f = H * 6 - i;
-				double p = V * (1 - S);
-				double q = V * (1 - f * S);
-				double t = V * (1 - (1 - f) * S)
-
-					switch (i % 6)
-					{
-					case 0: r = V, g = t, b = p; break;
-					case 1: r = q, g = V, b = p; break;
-					case 2: r = p, g = V, b = t; break;
-					case 3: r = p, g = q, b = V; break;
-					case 4: r = t, g = p, b = V; break;
-					case 5: r = V, g = p, b = q; break;
-					}
-			}
-			if (iteration == max_iteration) 
-			{
-				r = 0;
-				g = 0;
-				b = 0;
 			}
 
-			// Write the pixel
+			rgb rgb_values;
+
+			if (iteration > 20 && iteration < 180)
+			{
+				// changes outer colour
+				rgb_values = { 100.0, 100.0, 255.0 };
+			}
+			else if (iteration >= max_iteration)
+			{
+				// changes inner colour
+				rgb_values = { 10.0, 10.0, 10.0 };
+			}
+			else
+			{
+				hsv hsv_values = { (iteration - 100) , 50.0, 50.0 };
+				rgb_values = hsv2rgb(hsv_values);
+			}
 			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
-			image(pixelX, pixelY, 0, 0) = r; // red component
-			image(pixelX, pixelY, 0, 1) = g; // green component
-			image(pixelX, pixelY, 0, 2) = b; // blue component
-			iteration++;
+			image(pixelX, pixelY, 0, 0) = rgb_values.g; // red
+			image(pixelX, pixelY, 0, 1) = rgb_values.b; // green
+			image(pixelX, pixelY, 0, 2) = rgb_values.b; // blue
 		}
 
 		// Uncomment this line to redisplay the image after each row is generated
@@ -96,12 +192,13 @@ int main()
 	display.display(image);
 
 	// Uncomment this line to save the image to disk
-	//image.save_bmp("mandelbrot.bmp");
+	image.save_bmp("mandelbrot.bmp");
 
 	// Wait for the window to be closed
 	while (!display.is_closed())
 	{
 		display.wait();
+
 	}
 
 	return 0;
