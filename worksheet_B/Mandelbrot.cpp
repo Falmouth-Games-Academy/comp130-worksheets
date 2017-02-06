@@ -16,12 +16,13 @@ int main()
 
 	// Generate the image
 	float imageWidth = image.width();
+	float imageHeight = image.height();
 	int R =0, G = 0, B = 0; //initialising colours
 
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
 		// Map the y coordinate into the range minY to maxY
-		double y0 = ((pixelY / imageWidth) * (maxY - minY) + minY);
+		double y0 = ((pixelY / imageHeight) * (maxY - minY) + minY);
 
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
