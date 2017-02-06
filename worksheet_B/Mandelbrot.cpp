@@ -46,8 +46,20 @@ int main()
 			}
 
 			// Break down of colour formula
-			double firstRatio = (iteration) / (iteration + 1); // Ration of n : n + 1
-			double secondRatio = (iteration + 1) / (iteration + 2); // Ratio of n + 1 : n + 2
+			double i = iteration; // Used in the formula
+			double loopPoint = 10; // Initial number of iterations before looping
+			double loopMultiplier = 1.2; // Increase in the amount of iterations needed before looping
+
+			if (iteration > loopPoint)
+			// loops colours and then increases loop size each time
+			{
+				i = iteration - loopPoint;
+				loopPoint *= loopMultiplier;
+			}
+
+
+			double firstRatio = (i) / (i + 1); // Ration of I(n) : I(n + 1)
+			double secondRatio = (i + 1) / (i + 2); // Ratio of I(n + 1) : I(n + 2)
 			double ratioDifference = secondRatio - firstRatio; // produces decimal values from 0.167, tending towards 0 when iteration = infinity
 			double contrast = 6; // 0 = no contrast, 6 = max contrast (values higher than 6 results in rgb values above 255, thus looping)
 
