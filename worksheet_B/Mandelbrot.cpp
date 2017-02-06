@@ -34,6 +34,45 @@ int main()
 
 			// Write the pixel
 			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
+			int red = 0;
+			int blue = 0;
+			int green = 0;
+			
+			if (iterations <= 0)
+			{
+				blue = 255;
+			}
+			
+			else if (iterations <= 60)
+			{
+				green = 255;
+				blue = 255;
+			}
+
+			else if (iterations <= 120)
+			{
+				blue = 255;
+				red = 255;
+			}
+
+			else if (iterations <= 180)
+			{
+				red = 255;
+				green = 255;
+			}
+			
+			else if (iterations <= 199)
+			{
+				red = 125;
+				blue = 124;
+				green = 124;
+			}
+			else
+			{
+				red = 0;
+				blue = 0;
+				green = 0;
+			}
 			image(pixelX, pixelY, 0, 0) = rand(); // red component
 			image(pixelX, pixelY, 0, 1) = rand(); // green component
 			image(pixelX, pixelY, 0, 2) = rand(); // blue component
