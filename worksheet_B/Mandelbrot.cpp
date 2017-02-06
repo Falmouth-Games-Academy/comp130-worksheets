@@ -33,25 +33,29 @@ int main()
 			// The code below simply fills the screen with random pixels
 			double x = 0.0;
 			double y = 0.0;
-			int previousPreviousIteration = 0;
-			int previousIteration = 0;
+
 			double iteration = 0;
-			int maxIteration = 255; // Keep this value as it is used to generate RGB values
+			int maxIteration = 200;
 
 			while ((x*x + y*y < 2 * 2) && (iteration < maxIteration))
 			{
 				double xtemp = x*x - y*y + x0;
 				y = 2 * x*y + y0;
 				x = xtemp;
-				iteration++;
+				++iteration;
 			}
 
-			// Setting colours
+			// Break down of colour formula
+			double firstRatio = (iteration) / (iteration + 1); // Ration of n : n + 1
+			double secondRatio = (iteration + 1) / (iteration + 2); // Ratio of n + 1 : n + 2
+			double ratioDifference = secondRatio - firstRatio; // produces decimal values from 0.167, tending towards 0 when iteration = infinity
+			double contrast = 6; // 0 = no contrast, 6 = max contrast (values higher than 6 results in rgb values above 255, thus looping)
 
-			// First number changes colours, iteration formula cycles through shades.
-			R = 5 - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
-			G = 10 - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
-			B = 135 - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
+
+			// subtracting from 255 inverses black and white, ratioDifference increases slower at higher iterations
+			R = 255 - contrast*(255 * ratioDifference);
+			G = 255 - contrast*(255 * ratioDifference);
+			B = 255 - contrast*(255 * ratioDifference);
 
 
 			// Applies chosen colours
