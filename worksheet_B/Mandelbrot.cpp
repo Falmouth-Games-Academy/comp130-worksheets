@@ -136,15 +136,15 @@ int main()
 	// Generate the image
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
-		// TODO: Map the y coordinate into the range minY to maxY
+		//Map the y coordinate into the range minY to maxY
 		double y0 = (pixelY / 800.0) * (maxY - minY) + minY;
 
 		for (int pixelX = 0.0; pixelX < image.width(); pixelX++)
 		{
-			// TODO: Map the x coordinate into the range minX to maxX
+			//Map the x coordinate into the range minX to maxX
 			double x0 = (pixelX / 800.0) * (maxX - minX) + minX;
 
-			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
+			//algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			double yi = 0.0;
 			double xi = 0.0;
 			double loops = 0.0;
@@ -168,7 +168,7 @@ int main()
 				hsv currentHSV = { loops, 1.0, 1.0 };               
 				rgbValue = hsv2rgb(currentHSV);
 			}
-				// TODO: change the right-hand side of these three lines to write the desired pixel colour value
+				//change the right-hand side of these three lines to write the desired pixel colour value
 			image(pixelX, pixelY, 0, 0) = rgbValue.g*255.0 ; // red component
 			image(pixelX, pixelY, 0, 1) = rgbValue.b*255.0; // green component
 			image(pixelX, pixelY, 0, 2) = rgbValue.r*255.0; // blue component
