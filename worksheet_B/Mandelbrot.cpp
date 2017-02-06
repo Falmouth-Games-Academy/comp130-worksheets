@@ -44,7 +44,7 @@ int main()
 			int Red = 0;
 			int Green = 0;
 			int Blue = 0;
-			int Max = 255;
+			const Max = 255;
 
 		
 			if (iteration <= 0)
