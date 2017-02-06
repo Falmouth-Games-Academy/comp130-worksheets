@@ -17,34 +17,72 @@ int main()
 	// Generate the image
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
-		// TODO: Map the y coordinate into the range minY to maxY
-		//double y0 =
+		
+		double y0 = (pixelY / 800.0) * (maxY - minY) + minY;
 
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
-			// TODO: Map the x coordinate into the range minX to maxX
-			//double x0 =
+		
+			double x0 = (pixelX / 800.0) * (maxX - minX) + minX;
 
-			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
-			// The code below simply fills the screen with random pixels
-
+			double Xi = 0;
+			double Yi = 0;
+			int Iterations = 0;
+			int MaxIterations = 200;
+			while (Iterations < MaxIterations && Xi * Xi + Yi + Yi < 4)
+			{
+				
+				double temp = Xi * Xi - Yi * Yi + x0;
+				Yi = 2 * Xi * Yi + y0;
+				Xi = temp;
+				Iterations++;
+			}
 			// Write the pixel
-			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
-			image(pixelX, pixelY, 0, 0) = rand(); // red component
-			image(pixelX, pixelY, 0, 1) = rand(); // green component
-			image(pixelX, pixelY, 0, 2) = rand(); // blue component
+			int Red = 0;
+			int Green = 0;
+			int Blue = 0;
+
+			if (Iterations <= 60)
+			{
+				Red = 255;
+				Green = (Iterations / 60.0) * 255;
+			}
+			else if (Iterations <= 120)
+			{
+				Red = 255 - (((Iterations - 60) / 60.0) * 255);
+				Green = 255;
+			}
+			else if (Iterations <= 180)
+			{
+				Green = 255;
+				Blue = ((Iterations - 120) / 60.0) * 255;
+			}
+			else if (Iterations <= 199)
+			{
+				Green = 255 - (((Iterations - 60) / 60.0) * 255);
+				Blue = 255;
+			}
+			else
+			{
+				Red = 0;
+				Green = 0;
+				Blue = 0;
+			}
+			image(pixelX, pixelY, 0, 0) = Red; // red component
+			image(pixelX, pixelY, 0, 1) = Green; // green component
+			image(pixelX, pixelY, 0, 2) = Blue; // blue component
 		}
 
 		// Uncomment this line to redisplay the image after each row is generated
 		// Useful if your program is slow and you want to verify that it is actually doing something
-		//display.display(image);
+		display.display(image);
 	}
 
 	// Display the complete image
 	display.display(image);
 
 	// Uncomment this line to save the image to disk
-	//image.save_bmp("mandelbrot.bmp");
+	image.save_bmp("mandelbrot.bmp");
 
 	// Wait for the window to be closed
 	while (!display.is_closed())
