@@ -101,6 +101,8 @@ int main()
 
 while (true)
 	{
+
+		// Requires holding the button down, odd event handling
 		if (GetKeyState(VK_LBUTTON) < 0)
 		{
 			zoomIn = true;
@@ -153,16 +155,15 @@ while (true)
 			// Generate the image
 		for (double pixelY = 0; pixelY < image.height(); pixelY++)
 		{
-			// TODO: Map the y coordinate into the range minY to maxY
+			// Map the y coordinate into the range minY to maxY
 			double y0 = (pixelY / image.height()) * (maxY - minY) + minY;
 
 			for (double pixelX = 0; pixelX < image.width(); pixelX++)
 			{
-				// TODO: Map the x coordinate into the range minX to maxX
+				// Map the x coordinate into the range minX to maxX
 				double x0 = (pixelX / image.width()) * (maxX - minX) + minX;
 
-				// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
-				// The code below simply fills the screen with random pixels
+				// Algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 
 				double x = 0;
 				double y = 0;
@@ -177,8 +178,6 @@ while (true)
 				}
 
 				// Write the pixel
-				// TODO: change the right-hand side of these three lines to write the desired pixel colour value
-
 				rgb currentRGB;
 
 				if (i >= 200)										// Upper limit of 200 to catch outliers
@@ -199,7 +198,6 @@ while (true)
 			}
 
 			// Uncomment this line to redisplay the image after each row is generated
-			// Useful if your program is slow and you want to verify that it is actually doing something
 			display.display(image);
 		}
 		
@@ -212,6 +210,7 @@ while (true)
 		// Wait for the window to be closed
 
 /*
+		// Left commented out to allow catching the mouse button down event
 		while (!display.is_closed())
 		{
 			display.wait();
