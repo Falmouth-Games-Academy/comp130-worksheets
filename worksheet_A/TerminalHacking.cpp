@@ -3,9 +3,32 @@
 
 #include "stdafx.h"
 #include "WordList.h"
+#include <string>
+#include <iostream>
+
+
+using namespace std;
 
 const int wordLength = 5;
 const int numberOfWords = 15;
+int PlayerLives = 4;
+int Likeness = 0;
+string Guess = "";
+
+void HackingIntro();
+
+int GetLikeness(string Guess, string SecretWord)
+	{
+		int i = 0;
+		int PlayerGuesses = 0;
+		for (i = 0; i < wordLength; i++)
+		{
+			if (Guess.at(i) == SecretWord.at(i))
+				PlayerGuesses++;
+		}
+
+		return PlayerGuesses;
+	}
 
 int main()
 {
@@ -40,7 +63,35 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+	HackingIntro();
+
+	while (PlayerLives > 0) 
+	{
+		cout << "Please Enter Password\n";
+		//getline(cin, Guess);
+		cin >> Guess;
+		Likeness = GetLikeness(Guess, secret);
+		if (Likeness == wordLength)
+		{
+			cout << "Correct Password" << endl;
+			return 0;
+		}
+		
+		PlayerLives -= 1;
+		cout << Likeness << "Letters Match" << endl;
+		cout << "You Have " << PlayerLives << "lives remaining" << endl;
+		cout << endl;
+	}
 
     return 0;
+}
+
+void HackingIntro()
+{
+	//Create Constant Word Length
+	cout << "Welcome To The Terminal.\n";
+	cout << "Password Has A Length Of " << wordLength << endl;
+	cout << endl;
+	return;
 }
 
