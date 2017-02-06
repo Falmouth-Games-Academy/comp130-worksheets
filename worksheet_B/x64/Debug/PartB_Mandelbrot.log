@@ -1,5 +1,4 @@
 ﻿  Mandelbrot.cpp
-c:\users\max\documents\visual studio 2015\comp130-worksheets-master\worksheet_b\mandelbrot.cpp(12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\max\documents\visual studio 2015\comp130-worksheets-master\worksheet_b\mandelbrot.cpp(29): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  PartB_Mandelbrot.vcxproj -> C:\Users\Max\Documents\Visual Studio 2015\comp130-worksheets-master\worksheet_B\x64\Debug\PartB_Mandelbrot.exe
-  PartB_Mandelbrot.vcxproj -> C:\Users\Max\Documents\Visual Studio 2015\comp130-worksheets-master\worksheet_B\x64\Debug\PartB_Mandelbrot.pdb (Full PDB)
+d:\maxf\worksheet_b\mandelbrot.cpp(38): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  PartB_Mandelbrot.vcxproj -> D:\MaxF\worksheet_B\x64\Debug\PartB_Mandelbrot.exe
+  PartB_Mandelbrot.vcxproj -> D:\MaxF\worksheet_B\x64\Debug\PartB_Mandelbrot.pdb (Full PDB)

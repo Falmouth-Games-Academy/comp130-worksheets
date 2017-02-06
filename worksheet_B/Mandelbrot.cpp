@@ -9,7 +9,16 @@ int colourChoose(double iteration, int colourBeingPicked)
 	int colour;
 
 	//Picks the shade of the colour based on the number of iterations that were perfomed. 
-	colour =  colourBeingPicked - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
+	//colour =  colourBeingPicked - (255 / 1 / (iteration / (iteration + 1) - (iteration + 1) / (iteration + 2)));
+
+	if (iteration > 200)
+	{
+		colour = colourBeingPicked / 10;
+	}
+	else
+	{
+		colour = colourBeingPicked;
+	}
 
 	return colour;
 }
