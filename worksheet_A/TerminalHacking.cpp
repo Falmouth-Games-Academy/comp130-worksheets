@@ -3,9 +3,41 @@
 
 #include "stdafx.h"
 #include "WordList.h"
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 const int wordLength = 5;
 const int numberOfWords = 15;
+
+// Gets the similarity of the words
+int likeness(string wordGuessed, string secretWord)
+{
+	int result = 0;
+
+		for (int i = 0; i < (secretWord.length()); i++)
+		{
+		if (secretWord.at(i) == wordGuessed.at(i))
+		{
+			result ++;
+		}
+	}
+	return result;
+}
+
+//Makes user enter a word in the list or it loops
+bool listedWord(string userInput, set<string> options)
+{
+	for each (string word in options)
+	{
+		if (userInput == word)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 int main()
 {
@@ -40,6 +72,52 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+
+	int turnsLeft = 4;
+	string wordGuessed;
+
+	cout << endl;
+	cout << "Please guess the password" << endl;
+
+	while (turnsLeft > 0)
+		{
+			if (turnsLeft > 0)
+			{
+				cout << "Guesses left : " << turnsLeft << endl;
+				cin >> wordGuessed;
+				turnsLeft -= 1;
+			}
+			
+			if (listedWord(wordGuessed, options))
+			{
+				//If words match you win
+				if (wordGuessed == secret)
+				{
+					cout << "You win!" << endl;
+					turnsLeft = 0;
+				}
+				//If you have no guesses left you lose
+				else if (turnsLeft == 0)
+				{
+					cout << "You lose!" << endl;
+				}
+				//prints Likeness so you know what letters you have right
+				else
+				{
+					cout << "Likeness = " << likeness(wordGuessed, secret) << endl;
+				}
+			}
+	else
+	{
+		cout << endl << "Word not in list" << endl;
+	}
+	
+			if (turnsLeft == 0)
+			{
+				cout << "The word was : " <<  secret << endl;
+			}
+
+	}
 
     return 0;
 }
