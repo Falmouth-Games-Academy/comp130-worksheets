@@ -136,20 +136,18 @@ int main()
 	// Generate the image
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
-		// TODO: Map the y coordinate into the range minY to maxY
+		// Map the y coordinate into the range minY to maxY
 		
 		double y0 = (pixelY / 800.0) * (maxY-minY) + minY;
 		// Sets the y coordinate to 0 and then iterates it until it hits the maximum value
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
-			// TODO: Map the x coordinate into the range minX to maxX
+			// Map the x coordinate into the range minX to maxX
 			
 			// Does the same as the previous line but for the X axis
 			double x0 = (pixelX / 800.0) * (maxX - minX) + minX;
 
-			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
-			// The code below simply fills the screen with random pixels
-
+			// Implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			
 			// This algorithm colours a single pixel and depending on it's location on the screen, colours it according to the Mandelbrot set calculation, the process is then looped for every pixel onscreen
 			double X = 0;
@@ -180,7 +178,7 @@ int main()
 			
 
 			// Write the pixel
-			// TODO: change the right-hand side of these three lines to write the desired pixel colour value
+			// Change the right-hand side of these three lines to write the desired pixel colour value
 			image(pixelX, pixelY, 0, 0) = colourvalue.R; // red component
 			image(pixelX, pixelY, 0, 1) = colourvalue.G; // green component
 			image(pixelX, pixelY, 0, 2) = colourvalue.B; // blue component
