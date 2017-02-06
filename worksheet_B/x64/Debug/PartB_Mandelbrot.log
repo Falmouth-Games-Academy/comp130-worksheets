@@ -1,2 +1,5 @@
 ﻿  Mandelbrot.cpp
-d:\maxf\worksheet_b\mandelbrot.cpp(4): error C2859: D:\MaxF\worksheet_B\x64\Debug\vc140.idb is not the idb file that was used when this precompiled header was created, recreate the precompiled header.
+d:\maxf\worksheet_b\mandelbrot.cpp(16): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+d:\maxf\worksheet_b\mandelbrot.cpp(31): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  PartB_Mandelbrot.vcxproj -> D:\MaxF\worksheet_B\x64\Debug\PartB_Mandelbrot.exe
+  PartB_Mandelbrot.vcxproj -> D:\MaxF\worksheet_B\x64\Debug\PartB_Mandelbrot.pdb (Full PDB)

@@ -13,7 +13,7 @@ int colourChoose(double iteration, int colourBeingPicked)
 
 	colour = colourBeingPicked / (iteration/10);
 
-	return int(colour);
+	return colour;
 }
 
 int main()
@@ -28,7 +28,7 @@ int main()
 	const double minX = -2, maxX = 1, minY = -1.5, maxY = 1.5;
 
 	//Uses the width of the image to generate the y0 and the x0.
-	int widthOfImage = image.width();
+	float widthOfImage = image.width();
 	//Used to give a base colour to draw the mendelbrot fractal.
 	int red = 128;
 	int green = 0;
@@ -46,7 +46,7 @@ int main()
 			double x = 0.0;
 			double y = 0.0;
 			double iteration = 0;
-			int MaxIteration = 2555;
+			int MaxIteration = 255;
 
 			//The "Escapte time" algorithm. 
 			while ((x*x + y*y < 2 * 2) && (iteration < MaxIteration))
