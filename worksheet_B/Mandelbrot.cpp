@@ -137,16 +137,21 @@ int main()
 	for (int pixelY = 0; pixelY < image.height(); pixelY++)
 	{
 		// TODO: Map the y coordinate into the range minY to maxY
+		
 		double y0 = (pixelY / 800.0) * (maxY-minY) + minY;
-
+		// Sets the y coordinate to 0 and then iterates it until it hits the maximum value
 		for (int pixelX = 0; pixelX < image.width(); pixelX++)
 		{
 			// TODO: Map the x coordinate into the range minX to maxX
+			
+			// Does the same as the previous line but for the X axis
 			double x0 = (pixelX / 800.0) * (maxX - minX) + minX;
 
 			// TODO: implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			// The code below simply fills the screen with random pixels
 
+			
+			// This algorithm colours a single pixel and depending on it's location on the screen, colours it according to the Mandelbrot set calculation, the process is then looped for every pixel onscreen
 			double X = 0;
 			double Y = 0;
 			int iteration = 0;
@@ -161,11 +166,11 @@ int main()
 			}
 			
 
-
+			// Sets the value for the HSV to RGB converter so that the colours are changed and displayed correctly onscreen
 			HSV value = HSV(iteration, 1, 1);
 			RGBvalue colourvalue = HSVToRGBconverter(value);
 			
-			
+			// If the iteration is above 200 it is set to zero so that the colour is black 
 			if (iteration == 200)
 			{
 				colourvalue.R = 0;
