@@ -2,12 +2,5 @@
 	"FileVersion": 3,
 	"EngineAssociation": "4.12",
 	"Category": "",
-	"Description": "",
-	"Modules": [
-		{
-			"Name": "FPS",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		}
-	]
+	"Description": ""
 }
