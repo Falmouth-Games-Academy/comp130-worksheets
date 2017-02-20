@@ -1,0 +1,9 @@
+{
+	"Changelist" : 3224400,
+	"CompatibleChangelist" : 3195953,
+	"BuildId" : "",
+	"Modules" : 
+	{
+		"Worksheet_C" : "UE4Editor-Worksheet_C.dll"
+	}
+}

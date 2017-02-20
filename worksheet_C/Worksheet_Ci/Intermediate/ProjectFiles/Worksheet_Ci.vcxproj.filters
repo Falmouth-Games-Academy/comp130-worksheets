@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\Worksheet_Ci.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{9F0ADCF0-2239-4727-B82A-758A2ABDD252}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Worksheet_Ci.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\Worksheet_CiEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{3A024784-D3F7-495D-8962-B4F664A39038}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\Worksheet_Ci">
+			<UniqueIdentifier>{E722EEBD-8E1B-4C5F-A7BC-C6610227E677}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\Worksheet_Ci\Launcherprojectile.cpp">
+			<Filter>Source\Worksheet_Ci</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Worksheet_Ci\Launcherprojectile.h">
+			<Filter>Source\Worksheet_Ci</Filter>
+		</ClInclude >
+		<None Include="..\..\Source\Worksheet_Ci\Worksheet_Ci.Build.cs">
+			<Filter>Source\Worksheet_Ci</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\Worksheet_Ci\Worksheet_Ci.cpp">
+			<Filter>Source\Worksheet_Ci</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Worksheet_Ci\Worksheet_Ci.h">
+			<Filter>Source\Worksheet_Ci</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>
