@@ -238,6 +238,7 @@ bool AWorksheetCCharacter::EnableTouchscreenMovement(class UInputComponent* Inpu
 	return bResult;
 }
 
+// Based on tutorial at https://www.youtube.com/watch?v=aEMSo0okdx0
 void AWorksheetCCharacter::RaycastShoot()
 {
 	// try and play the sound if specified
