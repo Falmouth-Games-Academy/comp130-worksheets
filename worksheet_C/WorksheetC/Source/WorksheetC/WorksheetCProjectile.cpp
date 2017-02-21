@@ -41,7 +41,7 @@ void AWorksheetCProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherAct
 	}
 }
 
-
+// Based on tutorial at https://www.youtube.com/watch?v=5XiBnL4W-mM
 void AWorksheetCProjectile::OnDetonate()
 {
 	// Spawns a particle system at explosion location
