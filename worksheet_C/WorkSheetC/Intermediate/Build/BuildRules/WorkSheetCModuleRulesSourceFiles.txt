@@ -1,0 +1,3 @@
+C:\Users\Tristan\Documents\Unreal Projects\WorkSheetC\Source\WorkSheetC\WorkSheetC.Build.cs
+C:\Users\Tristan\Documents\Unreal Projects\WorkSheetC\Source\WorkSheetC.Target.cs
+C:\Users\Tristan\Documents\Unreal Projects\WorkSheetC\Source\WorkSheetCEditor.Target.cs
