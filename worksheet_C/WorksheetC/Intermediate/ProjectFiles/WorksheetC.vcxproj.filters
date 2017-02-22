@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\WorksheetC.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{2CB7488A-7F35-4B30-A7F9-B84F97062523}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\WorksheetC.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\WorksheetCEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{340F2E93-01E8-4222-B19D-04E680696C6A}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\WorksheetC">
+			<UniqueIdentifier>{3437C98E-A115-41F1-B925-B6D9A78A1B9B}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\WorksheetC\Enemy.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\Enemy.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\EnemySpawner.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\EnemySpawner.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\EnemySpawnerTriggerBox.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\EnemySpawnerTriggerBox.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\MyEnemy.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\MyEnemy.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\MyWorldSettings.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\MyWorldSettings.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<None Include="..\..\Source\WorksheetC\WorksheetC.Build.cs">
+			<Filter>Source\WorksheetC</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\WorksheetC\WorksheetC.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\WorksheetC.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\WorksheetCCharacter.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\WorksheetCCharacter.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\WorksheetCGameMode.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\WorksheetCGameMode.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\WorksheetCHUD.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\WorksheetCHUD.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\WorksheetC\WorksheetCProjectile.cpp">
+			<Filter>Source\WorksheetC</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\WorksheetC\WorksheetCProjectile.h">
+			<Filter>Source\WorksheetC</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>
