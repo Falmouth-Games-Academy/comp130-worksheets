@@ -16,8 +16,22 @@ class AWorkSheetCProjectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	class UProjectileMovementComponent* ProjectileMovement;
 
+
+	UPROPERTY(EditAnywhere, Category = "FX")
+	class UParticleSystem* ExplosionPar;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = Projectile)
+	class USphereComponent* ExplosionRad;
+
+
+
 public:
 	AWorkSheetCProjectile();
+
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	void Detonate();
 
 	/** called when projectile hits something */
 	UFUNCTION()
@@ -27,5 +41,6 @@ public:
 	FORCEINLINE class USphereComponent* GetCollisionComp() const { return CollisionComp; }
 	/** Returns ProjectileMovement subobject **/
 	FORCEINLINE class UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
+	float Radius = 300.f;
 };
 

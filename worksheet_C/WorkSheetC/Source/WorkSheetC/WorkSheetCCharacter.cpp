@@ -171,11 +171,7 @@ void AWorkSheetCCharacter::OnFire()
 	}
 
 	// try and play the sound if specified
-	if (FireSound != NULL)
-	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
-	}
-
+	MakeGunShotSound();
 	// try and play a firing animation if specified
 	if (FireAnimation != NULL)
 	{
@@ -306,7 +302,7 @@ void AWorkSheetCCharacter::Raycast()
 	FHitResult* HitResult = new FHitResult();
 	FVector StartTrace = FirstPersonCameraComponent->GetComponentLocation();
 	FVector ForwardVector = FirstPersonCameraComponent->GetForwardVector();
-	FVector EndTrace = (ForwardVector * 1000) + StartTrace;
+	FVector EndTrace = (ForwardVector * LengthOfRayCast) + StartTrace;
 	FCollisionQueryParams *CQP = new FCollisionQueryParams();
 	if (GetWorld()->LineTraceSingleByChannel(*HitResult, StartTrace, EndTrace, ECC_Visibility, *CQP))
 	{
@@ -315,8 +311,9 @@ void AWorkSheetCCharacter::Raycast()
 				AEnemyClass* ScaryChair = Cast<AEnemyClass>((*HitResult).GetActor());
 				if (ScaryChair)
 				{
-					GEngine->AddOnScreenDebugMessage(-1, 10.0, FColor::Yellow, FString::FString("HEy SCARY CHAIR"));
+					GEngine->AddOnScreenDebugMessage(-1, 10.0, FColor::Yellow, FString::FString("You Hit Scary Chair with a raycast!"));
 					ScaryChair->Health -= 50.0;
+					MakeGunShotSound();
 				}
 			}
 	}
@@ -340,6 +337,14 @@ void AWorkSheetCCharacter::SaveGamePlease()
 	UMySaveGame* SaveGameInstance = Cast<UMySaveGame>(UGameplayStatics::CreateSaveGameObject(UMySaveGame::StaticClass()));
 	SaveGameInstance->PlayerName = PlayerName;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveGameInstance->SaveSlotName, SaveGameInstance->UserIndex);
+}
+// try and play the sound if specified
+void AWorkSheetCCharacter::MakeGunShotSound()
+{
+	if (FireSound != NULL)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+	}
 }
 void AWorkSheetCCharacter::Fire()
 {

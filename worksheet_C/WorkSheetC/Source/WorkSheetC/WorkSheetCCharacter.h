@@ -139,5 +139,7 @@ private:
 	bool RayCast;
 	void ChangeWeapon();
 	void SaveGamePlease();
+	void MakeGunShotSound();
+	int32 LengthOfRayCast = 5000;
 };
 

@@ -28,6 +28,14 @@ struct FHitResult;
 		P_NATIVE_BEGIN; \
 		this->OnHit(Z_Param_HitComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_NormalImpulse,Z_Param_Out_Hit); \
 		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execDetonate) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->Detonate(); \
+		P_NATIVE_END; \
 	}
 
 
@@ -43,6 +51,14 @@ struct FHitResult;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		this->OnHit(Z_Param_HitComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_NormalImpulse,Z_Param_Out_Hit); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execDetonate) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->Detonate(); \
 		P_NATIVE_END; \
 	}
 
@@ -99,7 +115,9 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWorkSheetCProjectile); \
 
 #define WorkSheetC_Source_WorkSheetC_WorkSheetCProjectile_h_9_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__CollisionComp() { return STRUCT_OFFSET(AWorkSheetCProjectile, CollisionComp); } \
-	FORCEINLINE static uint32 __PPO__ProjectileMovement() { return STRUCT_OFFSET(AWorkSheetCProjectile, ProjectileMovement); }
+	FORCEINLINE static uint32 __PPO__ProjectileMovement() { return STRUCT_OFFSET(AWorkSheetCProjectile, ProjectileMovement); } \
+	FORCEINLINE static uint32 __PPO__ExplosionPar() { return STRUCT_OFFSET(AWorkSheetCProjectile, ExplosionPar); } \
+	FORCEINLINE static uint32 __PPO__ExplosionRad() { return STRUCT_OFFSET(AWorkSheetCProjectile, ExplosionRad); }
 
 
 #define WorkSheetC_Source_WorkSheetC_WorkSheetCProjectile_h_6_PROLOG

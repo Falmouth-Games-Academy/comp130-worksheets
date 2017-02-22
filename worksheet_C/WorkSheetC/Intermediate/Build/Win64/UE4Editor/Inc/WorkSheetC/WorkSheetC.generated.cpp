@@ -32,9 +32,10 @@ void EmptyLinkFunctionForGeneratedCode1WorkSheetC() {}
 	IMPLEMENT_CLASS(AWorkSheetCHUD, 3050071872);
 	void AWorkSheetCProjectile::StaticRegisterNativesAWorkSheetCProjectile()
 	{
+		FNativeFunctionRegistrar::RegisterFunction(AWorkSheetCProjectile::StaticClass(), "Detonate",(Native)&AWorkSheetCProjectile::execDetonate);
 		FNativeFunctionRegistrar::RegisterFunction(AWorkSheetCProjectile::StaticClass(), "OnHit",(Native)&AWorkSheetCProjectile::execOnHit);
 	}
-	IMPLEMENT_CLASS(AWorkSheetCProjectile, 1136632091);
+	IMPLEMENT_CLASS(AWorkSheetCProjectile, 1008970634);
 #if USE_COMPILED_IN_NATIVES
 // Cross Module References
 	ENGINE_API class UClass* Z_Construct_UClass_ACharacter();
@@ -52,8 +53,9 @@ void EmptyLinkFunctionForGeneratedCode1WorkSheetC() {}
 	ENGINE_API class UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AActor();
-	ENGINE_API class UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USphereComponent_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
 
 	WORKSHEETC_API class UClass* Z_Construct_UClass_AEnemyClass_NoRegister();
 	WORKSHEETC_API class UClass* Z_Construct_UClass_AEnemyClass();
@@ -65,6 +67,7 @@ void EmptyLinkFunctionForGeneratedCode1WorkSheetC() {}
 	WORKSHEETC_API class UClass* Z_Construct_UClass_AWorkSheetCGameMode();
 	WORKSHEETC_API class UClass* Z_Construct_UClass_AWorkSheetCHUD_NoRegister();
 	WORKSHEETC_API class UClass* Z_Construct_UClass_AWorkSheetCHUD();
+	WORKSHEETC_API class UFunction* Z_Construct_UFunction_AWorkSheetCProjectile_Detonate();
 	WORKSHEETC_API class UFunction* Z_Construct_UFunction_AWorkSheetCProjectile_OnHit();
 	WORKSHEETC_API class UClass* Z_Construct_UClass_AWorkSheetCProjectile_NoRegister();
 	WORKSHEETC_API class UClass* Z_Construct_UClass_AWorkSheetCProjectile();
@@ -322,6 +325,22 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AWorkSheetCHUD(Z_Construct_UClass_AWorkSheetCHUD, &AWorkSheetCHUD::StaticClass, TEXT("AWorkSheetCHUD"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AWorkSheetCHUD);
+	UFunction* Z_Construct_UFunction_AWorkSheetCProjectile_Detonate()
+	{
+		UObject* Outer=Z_Construct_UClass_AWorkSheetCProjectile();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("Detonate"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00020401, 65535);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("WorkSheetCProjectile.h"));
+#endif
+		}
+		return ReturnFunction;
+	}
 	UFunction* Z_Construct_UFunction_AWorkSheetCProjectile_OnHit()
 	{
 		struct WorkSheetCProjectile_eventOnHit_Parms
@@ -372,12 +391,16 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UObjectForceRegistration(OuterClass);
 				OuterClass->ClassFlags |= 0x20800080;
 
+				OuterClass->LinkChild(Z_Construct_UFunction_AWorkSheetCProjectile_Detonate());
 				OuterClass->LinkChild(Z_Construct_UFunction_AWorkSheetCProjectile_OnHit());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_ExplosionRad = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ExplosionRad"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(ExplosionRad, AWorkSheetCProjectile), 0x00400000000b0009, Z_Construct_UClass_USphereComponent_NoRegister());
+				UProperty* NewProp_ExplosionPar = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ExplosionPar"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(ExplosionPar, AWorkSheetCProjectile), 0x0040000000000001, Z_Construct_UClass_UParticleSystem_NoRegister());
 				UProperty* NewProp_ProjectileMovement = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ProjectileMovement"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(ProjectileMovement, AWorkSheetCProjectile), 0x00400000000a001d, Z_Construct_UClass_UProjectileMovementComponent_NoRegister());
 				UProperty* NewProp_CollisionComp = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CollisionComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(CollisionComp, AWorkSheetCProjectile), 0x00400000000b0009, Z_Construct_UClass_USphereComponent_NoRegister());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AWorkSheetCProjectile_Detonate(), "Detonate"); // 454570677
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AWorkSheetCProjectile_OnHit(), "OnHit"); // 1758915567
 				OuterClass->ClassConfigName = FName(TEXT("Game"));
 				OuterClass->StaticLink();
@@ -385,6 +408,11 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("WorkSheetCProjectile.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("WorkSheetCProjectile.h"));
+				MetaData->SetValue(NewProp_ExplosionRad, TEXT("Category"), TEXT("Projectile"));
+				MetaData->SetValue(NewProp_ExplosionRad, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_ExplosionRad, TEXT("ModuleRelativePath"), TEXT("WorkSheetCProjectile.h"));
+				MetaData->SetValue(NewProp_ExplosionPar, TEXT("Category"), TEXT("FX"));
+				MetaData->SetValue(NewProp_ExplosionPar, TEXT("ModuleRelativePath"), TEXT("WorkSheetCProjectile.h"));
 				MetaData->SetValue(NewProp_ProjectileMovement, TEXT("AllowPrivateAccess"), TEXT("true"));
 				MetaData->SetValue(NewProp_ProjectileMovement, TEXT("Category"), TEXT("Movement"));
 				MetaData->SetValue(NewProp_ProjectileMovement, TEXT("EditInline"), TEXT("true"));
@@ -410,8 +438,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/WorkSheetC")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xE7C96B89;
-			Guid.B = 0xE77D71CB;
+			Guid.A = 0x084D220E;
+			Guid.B = 0xD6539E91;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

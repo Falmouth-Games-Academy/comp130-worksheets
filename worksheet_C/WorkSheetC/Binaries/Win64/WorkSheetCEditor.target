@@ -2,7 +2,7 @@
 	"TargetName" : "WorkSheetCEditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "e38bec18-6fcb-41ad-a15b-3d5657a11e1e",
+	"BuildId" : "f309554c-8da3-4d75-8919-2d134ce6a777",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
@@ -16,15 +16,15 @@
 	"BuildProducts" :
 	[
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-WorkSheetC-5114.dll",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-WorkSheetC-5475.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-WorkSheetC-5114.pdb",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-WorkSheetC-5475.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WorkSheetC-5114.lib",
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-WorkSheetC-5475.lib",
 			"Type" : "ImportLibrary"
 		}
 	],
