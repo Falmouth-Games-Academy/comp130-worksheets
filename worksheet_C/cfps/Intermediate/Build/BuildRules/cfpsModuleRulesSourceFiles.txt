@@ -1,0 +1,3 @@
+C:\Users\Jack\Desktop\New folder\cfps\Source\cfps\cfps.Build.cs
+C:\Users\Jack\Desktop\New folder\cfps\Source\cfps.Target.cs
+C:\Users\Jack\Desktop\New folder\cfps\Source\cfpsEditor.Target.cs

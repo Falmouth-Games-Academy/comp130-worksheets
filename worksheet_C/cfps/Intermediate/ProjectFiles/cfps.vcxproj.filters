@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\cfps.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{AE85EF97-0072-4380-99C7-6C50DA142E69}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\cfps.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\cfpsEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{0E797C29-7E11-4C02-9F0B-AD73291CD5F2}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\cfps">
+			<UniqueIdentifier>{D2F61260-0BD3-413C-8505-C4911A3953A7}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\cfps\cfps.Build.cs">
+			<Filter>Source\cfps</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\cfps\cfps.cpp">
+			<Filter>Source\cfps</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\cfps\cfps.h">
+			<Filter>Source\cfps</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\cfps\cfpsCharacter.cpp">
+			<Filter>Source\cfps</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\cfps\cfpsCharacter.h">
+			<Filter>Source\cfps</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\cfps\cfpsGameMode.cpp">
+			<Filter>Source\cfps</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\cfps\cfpsGameMode.h">
+			<Filter>Source\cfps</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\cfps\cfpsHUD.cpp">
+			<Filter>Source\cfps</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\cfps\cfpsHUD.h">
+			<Filter>Source\cfps</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\cfps\cfpsProjectile.cpp">
+			<Filter>Source\cfps</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\cfps\cfpsProjectile.h">
+			<Filter>Source\cfps</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>
