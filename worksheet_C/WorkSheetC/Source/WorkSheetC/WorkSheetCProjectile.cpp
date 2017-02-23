@@ -40,6 +40,7 @@ void AWorkSheetCProjectile::BeginPlay()
 
 }
 
+//Function to Handle Area of effect damage, also applies impulse to static mesh objects Detonate only called on event hit
 void AWorkSheetCProjectile::Detonate()
 {
 	UParticleSystemComponent* Explosion = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionPar, GetActorTransform());
@@ -49,20 +50,29 @@ void AWorkSheetCProjectile::Detonate()
 	FVector StartTrace = GetActorLocation();
 	FVector EndTrace = StartTrace;
 	EndTrace.Z += 200.f;
+
+	//creates collisionsphere
 	FCollisionShape CollisionShape;
 	CollisionShape.ShapeType = ECollisionShape::Sphere;
 	CollisionShape.SetSphere(Radius);
+
+	//Checks A multi channel for collisions withing the shape "CollisionShape" and adds them to the HitActors TArray
 	if (GetWorld()->SweepMultiByChannel(HitActors, StartTrace, EndTrace, FQuat::FQuat(), ECC_WorldStatic, CollisionShape))
 	{
 		for (auto Actors = HitActors.CreateIterator(); Actors; Actors++)
 		{
+			//Trying to cast to StaticMesh and and objects that inherit from EnemyClass.
 			UStaticMeshComponent* StaticMesh = Cast<UStaticMeshComponent>((*Actors).Actor->GetRootComponent());
 			AEnemyClass* ScaryChair = Cast<AEnemyClass>((*Actors).GetActor());
+
+			//If the cast to scary chair is sucessful deal damage to the instance of scarychair
 			if (ScaryChair)
 			{
 				ScaryChair->Health -= 30;
 				GEngine->AddOnScreenDebugMessage(-1, 10.0, FColor::Yellow, FString::FString("You Hit Scary Chair with a grenade!"));
 			}
+			
+			//if the cast to staticmesh is sucessful add impulse to the static mesh
 			if (StaticMesh)
 			{
 				StaticMesh->AddRadialImpulse(GetActorLocation(), 1000.f, 5000.f, ERadialImpulseFalloff::RIF_Linear, true);

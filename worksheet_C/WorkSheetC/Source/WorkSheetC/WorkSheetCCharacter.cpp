@@ -78,6 +78,7 @@ AWorkSheetCCharacter::AWorkSheetCCharacter()
 	VR_MuzzleLocation->SetRelativeLocation(FVector(0.000004, 53.999992, 10.000000));
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 
+
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
 }
@@ -103,6 +104,7 @@ void AWorkSheetCCharacter::BeginPlay()
 		Mesh1P->SetHiddenInGame(false, true);
 	}
 }
+
 
 //////////////////////////////////////////////////////////////////////////
 // Input
@@ -297,18 +299,26 @@ bool AWorkSheetCCharacter::EnableTouchscreenMovement(class UInputComponent* Play
 	return bResult;
 }
 
+//Function for raycast
 void AWorkSheetCCharacter::Raycast()
-{
+{	
 	FHitResult* HitResult = new FHitResult();
+	FCollisionQueryParams *CQP = new FCollisionQueryParams();
+
+	//Maths to cast the ray from players forward vector
 	FVector StartTrace = FirstPersonCameraComponent->GetComponentLocation();
 	FVector ForwardVector = FirstPersonCameraComponent->GetForwardVector();
 	FVector EndTrace = (ForwardVector * LengthOfRayCast) + StartTrace;
-	FCollisionQueryParams *CQP = new FCollisionQueryParams();
+
 	if (GetWorld()->LineTraceSingleByChannel(*HitResult, StartTrace, EndTrace, ECC_Visibility, *CQP))
 	{
+			//check to see if it hits something
 			if (HitResult->GetActor() != NULL)
 			{
+				//Tries to cast hit result to A all actors which inherit from enemy class
 				AEnemyClass* ScaryChair = Cast<AEnemyClass>((*HitResult).GetActor());
+
+				//If it casted propperly
 				if (ScaryChair)
 				{
 					GEngine->AddOnScreenDebugMessage(-1, 10.0, FColor::Yellow, FString::FString("You Hit Scary Chair with a raycast!"));
@@ -318,6 +328,8 @@ void AWorkSheetCCharacter::Raycast()
 			}
 	}
 }
+
+//Simple Function which changes between weapons
 void AWorkSheetCCharacter::ChangeWeapon()
 {
 	
@@ -330,6 +342,8 @@ void AWorkSheetCCharacter::ChangeWeapon()
 		RayCast = true;
 	}
 }
+
+//Experimental saving function (ignore for worksheet)
 void AWorkSheetCCharacter::SaveGamePlease()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 10.0, FColor::Yellow, FString::FString("I should be saving a game"));
@@ -338,7 +352,8 @@ void AWorkSheetCCharacter::SaveGamePlease()
 	SaveGameInstance->PlayerName = PlayerName;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SaveGameInstance->SaveSlotName, SaveGameInstance->UserIndex);
 }
-// try and play the sound if specified
+
+// Re-factored the gunshot code into a function to call upon it for the raycast(less code duplication)
 void AWorkSheetCCharacter::MakeGunShotSound()
 {
 	if (FireSound != NULL)
@@ -346,6 +361,8 @@ void AWorkSheetCCharacter::MakeGunShotSound()
 		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 	}
 }
+
+//Function to chose which mode of fire currently in (raycast or projectile) 
 void AWorkSheetCCharacter::Fire()
 {
 	if (RayCast == true)
