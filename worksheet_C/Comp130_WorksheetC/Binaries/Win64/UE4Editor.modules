@@ -1,8 +1,8 @@
 {
 	"Changelist" : 3039270,
-	"BuildId" : "9155ca42-65e9-448c-885d-69fe54608a25",
+	"BuildId" : "",
 	"Modules" : 
 	{
-		"Comp130_WorksheetC" : "UE4Editor-Comp130_WorksheetC-7646.dll"
+		"Comp130_WorksheetC" : "UE4Editor-Comp130_WorksheetC.dll"
 	}
 }

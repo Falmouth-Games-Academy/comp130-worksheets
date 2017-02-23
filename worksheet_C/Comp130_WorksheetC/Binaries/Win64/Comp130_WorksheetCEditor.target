@@ -2,7 +2,7 @@
 	"TargetName" : "Comp130_WorksheetCEditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "9155ca42-65e9-448c-885d-69fe54608a25",
+	"BuildId" : "",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
@@ -15,15 +15,15 @@
 	"BuildProducts" :
 	[
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Comp130_WorksheetC-835.dll",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Comp130_WorksheetC.dll",
 			"Type" : "DynamicLibrary"
 		},
 		{
-			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Comp130_WorksheetC-835.pdb",
+			"Path" : "$(ProjectDir)/Binaries/Win64/UE4Editor-Comp130_WorksheetC.pdb",
 			"Type" : "SymbolFile"
 		},
 		{
-			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Comp130_WorksheetC-835.lib",
+			"Path" : "$(ProjectDir)/Intermediate/Build/Win64/UE4Editor/Development/UE4Editor-Comp130_WorksheetC.lib",
 			"Type" : "ImportLibrary"
 		}
 	],
