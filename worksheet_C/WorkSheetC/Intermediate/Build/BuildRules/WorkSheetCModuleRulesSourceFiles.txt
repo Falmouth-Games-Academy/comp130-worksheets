@@ -1,3 +1,0 @@
-C:\Users\Tristan\Desktop\test\comp130-worksheets\worksheet_C\WorkSheetC\Source\WorkSheetC\WorkSheetC.Build.cs
-C:\Users\Tristan\Desktop\test\comp130-worksheets\worksheet_C\WorkSheetC\Source\WorkSheetC.Target.cs
-C:\Users\Tristan\Desktop\test\comp130-worksheets\worksheet_C\WorkSheetC\Source\WorkSheetCEditor.Target.cs
