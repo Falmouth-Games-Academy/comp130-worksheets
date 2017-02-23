@@ -23,9 +23,10 @@ void EmptyLinkFunctionForGeneratedCode1cfps() {}
 	IMPLEMENT_CLASS(AcfpsHUD, 929932699);
 	void AcfpsProjectile::StaticRegisterNativesAcfpsProjectile()
 	{
+		FNativeFunctionRegistrar::RegisterFunction(AcfpsProjectile::StaticClass(), "OnDetonate",(Native)&AcfpsProjectile::execOnDetonate);
 		FNativeFunctionRegistrar::RegisterFunction(AcfpsProjectile::StaticClass(), "OnHit",(Native)&AcfpsProjectile::execOnHit);
 	}
-	IMPLEMENT_CLASS(AcfpsProjectile, 2690040183);
+	IMPLEMENT_CLASS(AcfpsProjectile, 1360344800);
 #if USE_COMPILED_IN_NATIVES
 // Cross Module References
 	ENGINE_API class UClass* Z_Construct_UClass_ACharacter();
@@ -41,6 +42,8 @@ void EmptyLinkFunctionForGeneratedCode1cfps() {}
 	ENGINE_API class UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_AActor();
+	ENGINE_API class UClass* Z_Construct_UClass_USoundCue_NoRegister();
+	ENGINE_API class UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_UProjectileMovementComponent_NoRegister();
 	ENGINE_API class UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 
@@ -50,6 +53,7 @@ void EmptyLinkFunctionForGeneratedCode1cfps() {}
 	CFPS_API class UClass* Z_Construct_UClass_AcfpsGameMode();
 	CFPS_API class UClass* Z_Construct_UClass_AcfpsHUD_NoRegister();
 	CFPS_API class UClass* Z_Construct_UClass_AcfpsHUD();
+	CFPS_API class UFunction* Z_Construct_UFunction_AcfpsProjectile_OnDetonate();
 	CFPS_API class UFunction* Z_Construct_UFunction_AcfpsProjectile_OnHit();
 	CFPS_API class UClass* Z_Construct_UClass_AcfpsProjectile_NoRegister();
 	CFPS_API class UClass* Z_Construct_UClass_AcfpsProjectile();
@@ -205,6 +209,22 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AcfpsHUD(Z_Construct_UClass_AcfpsHUD, &AcfpsHUD::StaticClass, TEXT("AcfpsHUD"), false, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AcfpsHUD);
+	UFunction* Z_Construct_UFunction_AcfpsProjectile_OnDetonate()
+	{
+		UObject* Outer=Z_Construct_UClass_AcfpsProjectile();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("OnDetonate"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00020401, 65535);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("cfpsProjectile.h"));
+#endif
+		}
+		return ReturnFunction;
+	}
 	UFunction* Z_Construct_UFunction_AcfpsProjectile_OnHit()
 	{
 		struct cfpsProjectile_eventOnHit_Parms
@@ -255,12 +275,17 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				UObjectForceRegistration(OuterClass);
 				OuterClass->ClassFlags |= 0x20800080;
 
+				OuterClass->LinkChild(Z_Construct_UFunction_AcfpsProjectile_OnDetonate());
 				OuterClass->LinkChild(Z_Construct_UFunction_AcfpsProjectile_OnHit());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_Radius = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Radius"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(Radius, AcfpsProjectile), 0x0040000000000001);
+				UProperty* NewProp_ExplosionSound = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ExplosionSound"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(ExplosionSound, AcfpsProjectile), 0x0040000000000001, Z_Construct_UClass_USoundCue_NoRegister());
+				UProperty* NewProp_ExplosionParticles = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ExplosionParticles"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(ExplosionParticles, AcfpsProjectile), 0x0040000000000001, Z_Construct_UClass_UParticleSystem_NoRegister());
 				UProperty* NewProp_ProjectileMovement = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ProjectileMovement"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(ProjectileMovement, AcfpsProjectile), 0x00400000000a001d, Z_Construct_UClass_UProjectileMovementComponent_NoRegister());
 				UProperty* NewProp_CollisionComp = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CollisionComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(CollisionComp, AcfpsProjectile), 0x00400000000b0009, Z_Construct_UClass_USphereComponent_NoRegister());
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AcfpsProjectile_OnDetonate(), "OnDetonate"); // 651521465
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AcfpsProjectile_OnHit(), "OnHit"); // 3047371265
 				OuterClass->ClassConfigName = FName(TEXT("Game"));
 				OuterClass->StaticLink();
@@ -269,6 +294,12 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("cfpsProjectile.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("cfpsProjectile.h"));
 				MetaData->SetValue(OuterClass, TEXT("OnlyDefaultConstructorDeclared"), TEXT(""));
+				MetaData->SetValue(NewProp_Radius, TEXT("Category"), TEXT("Projectile"));
+				MetaData->SetValue(NewProp_Radius, TEXT("ModuleRelativePath"), TEXT("cfpsProjectile.h"));
+				MetaData->SetValue(NewProp_ExplosionSound, TEXT("Category"), TEXT("FX"));
+				MetaData->SetValue(NewProp_ExplosionSound, TEXT("ModuleRelativePath"), TEXT("cfpsProjectile.h"));
+				MetaData->SetValue(NewProp_ExplosionParticles, TEXT("Category"), TEXT("FX"));
+				MetaData->SetValue(NewProp_ExplosionParticles, TEXT("ModuleRelativePath"), TEXT("cfpsProjectile.h"));
 				MetaData->SetValue(NewProp_ProjectileMovement, TEXT("AllowPrivateAccess"), TEXT("true"));
 				MetaData->SetValue(NewProp_ProjectileMovement, TEXT("Category"), TEXT("Movement"));
 				MetaData->SetValue(NewProp_ProjectileMovement, TEXT("EditInline"), TEXT("true"));
@@ -294,8 +325,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/cfps")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xAC063638;
-			Guid.B = 0x5A1D5D5F;
+			Guid.A = 0x3BB5BA62;
+			Guid.B = 0x4955C6CE;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

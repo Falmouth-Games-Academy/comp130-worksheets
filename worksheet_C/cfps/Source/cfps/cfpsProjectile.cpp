@@ -3,6 +3,7 @@
 #include "cfps.h"
 #include "cfpsProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "PhysicsEngine/DestructibleActor.h"
 
 AcfpsProjectile::AcfpsProjectile() 
 {
@@ -34,11 +35,9 @@ AcfpsProjectile::AcfpsProjectile()
 void AcfpsProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// Only add impulse and destroy projectile if we hit a physics
-	if ((OtherActor != NULL) && (OtherActor != this) && (OtherComp != NULL) && OtherComp->IsSimulatingPhysics())
+	if ((OtherActor != NULL) && (OtherActor != this))
 	{
-		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
-
-		Destroy();
+		OnDetonate();
 	}
 }
 
@@ -46,6 +45,50 @@ void AcfpsProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FTimer timerhandle;
-	GetWorld()->GetTimerManager().SetTimer(timerhandle, this, &AcfpsProjectile::OnDetonate, 2.f, false);
+	FTimerHandle handle;
+	GetWorld()->GetTimerManager().SetTimer(handle, this, &AcfpsProjectile::OnDetonate, 5.f, false);
+}
+
+void AcfpsProjectile::OnDetonate()
+{
+	UParticleSystemComponent* Explosion = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionParticles, GetActorTransform());
+	Explosion->SetRelativeScale3D(FVector(4.f));
+
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), ExplosionSound, GetActorLocation());
+
+	TArray<FHitResult> HitActors;
+
+	FVector StartTrace = GetActorLocation();
+	FVector EndTrace = StartTrace;
+	EndTrace.Z += 300.f;
+
+	FCollisionShape CollisionShape;
+	CollisionShape.ShapeType = ECollisionShape::Sphere;
+	CollisionShape.SetSphere(Radius);
+
+	if (GetWorld()->SweepMultiByChannel(HitActors, StartTrace, EndTrace, FQuat::FQuat(), ECC_WorldStatic, CollisionShape))
+	{
+		for (auto Actors = HitActors.CreateIterator(); Actors; Actors++)
+		{
+			UStaticMeshComponent* SM = Cast<UStaticMeshComponent>((*Actors).Actor->GetRootComponent());
+			ADestructibleActor* DA = Cast<ADestructibleActor>((*Actors).GetActor());
+
+			if (SM)
+			{
+				SM->AddRadialImpulse(GetActorLocation(), 1000.f, 500.f, ERadialImpulseFalloff::RIF_Linear, true);
+
+			}
+			else if (DA)
+			{
+				DA->GetDestructibleComponent()->ApplyRadiusDamage(10.f, Actors->ImpactPoint, 500.f, 3000.f, false);
+			}
+
+		}
+
+
+
+	}
+
+	Destroy();
+
 }

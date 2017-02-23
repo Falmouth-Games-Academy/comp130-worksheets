@@ -30,6 +30,14 @@ struct FHitResult;
 		P_NATIVE_BEGIN; \
 		this->OnHit(Z_Param_HitComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_NormalImpulse,Z_Param_Out_Hit); \
 		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execOnDetonate) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->OnDetonate(); \
+		P_NATIVE_END; \
 	}
 
 
@@ -45,6 +53,14 @@ struct FHitResult;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		this->OnHit(Z_Param_HitComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_NormalImpulse,Z_Param_Out_Hit); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execOnDetonate) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->OnDetonate(); \
 		P_NATIVE_END; \
 	}
 
