@@ -6,7 +6,7 @@ float ImageHeight = 800.0;
 int main()
 {
 	// Initialise the image
-	CImg<unsigned char> image(800, 800, 1, 3, 0);
+	CImg<unsigned char> image(ImageWidth, ImageHeight, 1, 3, 0);
 
 	// Display the image
 	CImgDisplay display(image, "Mandelbrot Set");
@@ -15,55 +15,56 @@ int main()
 	const double minX = -2, maxX = 1, minY = -1.5, maxY = 1.5;
 
 	// Generate the image
-	for (int pixelY = 0; pixelY < ImageHeight; pixelY++)
+	for (int PixelY = 0; PixelY < ImageHeight; PixelY++)
 	{
 		// Maps the y coordinate into the range minY to maxY
-		double y0 = ((pixelY / ImageWidth) * (maxY - minY) + minY);
+		double y0 = ((PixelY / ImageWidth) * (maxY - minY) + minY);
 
-		for (int pixelX = 0; pixelX < ImageWidth; pixelX++)
+		for (int PixelX = 0; PixelX < ImageWidth; PixelX++)
 		{
 			// Maps the x coordinate into the range minX to maxX
-			double x0 = ((pixelX / ImageWidth) * (maxX - minX) + minX);
+			double x0 = ((PixelX / ImageWidth) * (maxX - minX) + minX);
 
 			// The algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			// http://rijndael.ece.vt.edu/challenge/codesigndata/2012_assign.pdf [online at 30/01/2017]
 			double x = 0;
 			double y = 0;
-			int iteration = 0;
+			int Iteration = 0;
 			int MaxIteration = 200;
-			while ((x * x) + (y * y) < 4 && iteration < MaxIteration)
+			while ((x * x) + (y * y) < 4 && Iteration < MaxIteration)
 			{
-				double xtemp = (x * x) - (y * y) + x0;
+				double XTemp = (x * x) - (y * y) + x0;
 				y = 2 * x * y + y0;
-				x = xtemp;
-				iteration++;
+				x = XTemp;
+				Iteration++;
 			}
 
 			//Converts the colours from HSV to RGB
+			// http://chaosinmotion.com/blog/?p=878 [online at 30/01/2017]
 			int MaxColourValue = 255;
 			int MinColourValue = 0;
 			int Red = 0;
 			int Green = 0;
 			int Blue = 0;
 
-			if (iteration <= 60)
+			if (Iteration <= 60)
 			{
 				Blue = MaxColourValue;
-				Green = (iteration / 60) * MaxColourValue;
+				Green = (Iteration / 60) * MaxColourValue;
 			}
-			else if (iteration <= 120)
+			else if (Iteration <= 120)
 			{
-				Blue = MaxColourValue - (((iteration - 60) / 60) * MaxColourValue);
+				Blue = MaxColourValue - (((Iteration - 60) / 60) * MaxColourValue);
 				Green = MaxColourValue;
 			}
-			else if (iteration <= 180)
+			else if (Iteration <= 180)
 			{
 				Red = MaxColourValue;
-				Blue = ((iteration - 120) / 60) * MaxColourValue;
+				Blue = ((Iteration - 120) / 60) * MaxColourValue;
 			}
-			else if (iteration <= 199)
+			else if (Iteration <= 199)
 			{
-				Red = MaxColourValue - (((iteration - 60) / 60) * MaxColourValue);
+				Red = MaxColourValue - (((Iteration - 60) / 60) * MaxColourValue);
 				Blue = MaxColourValue;
 			}
 			else
@@ -75,9 +76,9 @@ int main()
 
 			// Write the pixel
 			// The right-hand side of these three lines writes the desired pixel colour value
-			image(pixelX, pixelY, 0, 0) = Red; // red component
-			image(pixelX, pixelY, 0, 1) = Green; // green component
-			image(pixelX, pixelY, 0, 2) = Blue; // blue component
+			image(PixelX, PixelY, 0, 0) = Red; // red component
+			image(PixelX, PixelY, 0, 1) = Green; // green component
+			image(PixelX, PixelY, 0, 2) = Blue; // blue component
 		}
 
 		//display.display(image);
