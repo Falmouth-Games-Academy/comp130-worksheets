@@ -4,11 +4,58 @@
 #include "stdafx.h"
 #include "WordList.h"
 
-const int wordLength = 5;
+int wordLength = 5;
 const int numberOfWords = 15;
+int livesRemaining = 4;
+int difficulty = 0;
+bool validWord;
+std::string playerGuess;
+
+int checkSimilarity(std::string secret, std::string player)
+{
+	int letter;
+	int similarityScore = 0;
+	for (letter = 0; letter < wordLength; letter++)
+	{
+		if (secret.at(letter) == player.at(letter))
+		{
+			similarityScore++;
+		}
+	}
+
+	return similarityScore;
+}
+
+
 
 int main()
 {
+	std::cout << "Please choice your difficulty" << std::endl;
+	std::cout << "Very Easy: 1" << std::endl;
+	std::cout << "Easy: 2" << std::endl;
+	std::cout << "Average: 3" << std::endl;
+	std::cout << "Hard: 4" << std::endl;
+	std::cout << "Very Hard: 5" << std::endl;
+	std::cin >> difficulty;
+	if (difficulty == 1){wordLength = 5;}
+	
+	else if (difficulty == 2){wordLength = 8;}
+	
+	else if (difficulty == 3){wordLength = 10;}
+	
+	else if (difficulty == 4){wordLength = 12;}
+
+	else if (difficulty == 5){wordLength = 15;}	
+
+	else 
+	{
+		difficulty = 1; 
+		wordLength = 5;
+		std::cout << "Invalid choice selected, Terminal will be set to Very Easy." << std::endl;
+	}
+
+	int similarityScore;
+
 	// Seed the random number generator with the current time,
 	// to ensure different results each time the program is run
 	srand(static_cast<unsigned int>(time(nullptr)));
@@ -27,6 +74,7 @@ int main()
 
 	// Fill the set with more words
 	// Using a set for options guarantees that the elements are all different
+
 	while (options.size() < numberOfWords)
 	{
 		std::string word = words.getRandomWord();
@@ -37,10 +85,49 @@ int main()
 	for each (std::string word in options)
 	{
 		std::cout << word << std::endl;
+		
 	}
 
-	// TODO: implement the rest of the game
+	// Main game loop
+	while (livesRemaining > 0)
+	{
+		std::cout << "Please input a guess using only capital letters." << std::endl;
+		std::cin >> playerGuess;
+		for each (std::string word in options)
+		{
+			if (playerGuess != word)
+			{
+				validWord = false;
+			}
+
+			else
+			{
+				validWord = true;
+			}
+		}
+		if (validWord == true)
+		{
+			if (playerGuess != secret)
+			{
+				livesRemaining -= 1;
+				std::cout << "Number of lives remaning " << livesRemaining << std::endl;
+				similarityScore = checkSimilarity(secret, playerGuess);
+				std::cout << "Similarity " << similarityScore << "/" << wordLength << std::endl;
+			}
+
+			else
+			{
+				std::cout << "You win the game" << std::endl << "Type Quit to exit" << std::endl;
+				std::cin >> playerGuess;
+				livesRemaining = 0;
+			}
+		}
+		else 
+		{
+			std::cout << "Your input is invalid" << std::endl;
+		}
+
+	}
 
     return 0;
 }
-
