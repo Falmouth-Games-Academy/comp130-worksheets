@@ -4,7 +4,7 @@
 #include "cfpsProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "PhysicsEngine/DestructibleActor.h"
-
+//Tutorial used for grenade launcher: https://www.youtube.com/watch?v=5XiBnL4W-mM
 AcfpsProjectile::AcfpsProjectile() 
 {
 	// Use a sphere as a simple collision representation
