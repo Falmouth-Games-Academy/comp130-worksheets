@@ -4,7 +4,26 @@
 #include "stdafx.h"
 #include "WordList.h"
 
+// Compares the guessed word to the secret word, then returns the likeness
+int getlikeness(std::string guessedWord, std::string secretWord)
+{
+	int i;
+	int result = 0;
+	for (i = 0; i < secretWord.length(); i++)
+	{
+		if (secretWord.at(i) == guessedWord.at(i))
+				
+			result++;
+			
+	}
 
+	return result;
+}
+
+
+
+int main()
+{
 const int wordlength = 5;
 const int numberOfWords = 15;
 int lives = 4;
@@ -12,26 +31,6 @@ bool correctguess;
 int LikenessScore = 0;
 std::string input;
 
-// Compares the guessed word to the secret word, then returns the likeness
-int getlikeness(std::string guessedWord, std::string secretWord)
-{
-	int i;
-	int result = 0;
-		for (i = 0; i < secretWord.length(); i++)
-		{
-			if (secretWord.at(i) == guessedWord.at(i))
-				
-				result++;
-			
-		}
-
-		return result;
-}
-
-
-
-int main()
-{
 	// Seed the random number generator with the current time,
 	// to ensure different results each time the program is run
 	srand(static_cast<unsigned int>(time(nullptr)));
@@ -63,7 +62,7 @@ int main()
 	}
 
 	
-	// TODO: implement the rest of the game
+	
 	
 	//Only runs loop while the player has lives left
 	while (lives > 0)

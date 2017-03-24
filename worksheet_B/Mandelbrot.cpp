@@ -25,27 +25,27 @@ public:
 	}
 };
 
-class HSV
+class HSVvalue
 {
 public:
 	double H;
 	double S;
 	double V;
 
-	HSV(double h, double s, double v)
+	HSVvalue(double h, double s, double v)
 	{
 		H = h;
 		S = s;
 		V = v;
 	}
 
-	bool Equals(HSV hsv)
+	bool Equals(HSVvalue hsv)
 	{
 		return (H == hsv.H) && (S == hsv.S) && (V == hsv.V);
 	}
 };
 
-static RGBvalue HSVToRGBconverter(HSV hsv) {
+static RGBvalue convertHSVToRGB(HSVvalue hsv) {
 	double r = 0, g = 0, b = 0;
 
 	if (hsv.S == 0)
@@ -138,14 +138,14 @@ int main()
 	{
 		// Map the y coordinate into the range minY to maxY
 		
-		double y0 = (pixelY / 800.0) * (maxY-minY) + minY;
+		double y0 = (pixelY / (double) image.height()) * (maxY-minY) + minY;
 		// Sets the y coordinate to 0 and then iterates it until it hits the maximum value
-		for (int pixelX = 0; pixelX < image.width(); pixelX++)
+		for (int pixelX = 0; pixelX < image.height(); pixelX++)
 		{
 			// Map the x coordinate into the range minX to maxX
 			
 			// Does the same as the previous line but for the X axis
-			double x0 = (pixelX / 800.0) * (maxX - minX) + minX;
+			double x0 = (pixelX / (double)image.width()) * (maxX - minX) + minX;
 
 			// Implement the algorithm to colour a single pixel (x0, y0) of the Mandelbrot set fractal
 			
@@ -165,8 +165,8 @@ int main()
 			
 
 			// Sets the value for the HSV to RGB converter so that the colours are changed and displayed correctly onscreen
-			HSV value = HSV(iteration, 1, 1);
-			RGBvalue colourvalue = HSVToRGBconverter(value);
+			HSVvalue value = HSVvalue(iteration, 1, 1);
+			RGBvalue colourvalue = convertHSVToRGB(value);
 			
 			// If the iteration is above 200 it is set to zero so that the colour is black 
 			if (iteration == 200)
