@@ -4,7 +4,7 @@
 	<ItemGroup>
 		<None Include="..\..\cfps.uproject" />
 		<Filter Include="Source">
-			<UniqueIdentifier>{AE85EF97-0072-4380-99C7-6C50DA142E69}</UniqueIdentifier>
+			<UniqueIdentifier>{D1C06B85-47E8-4C99-A3C6-92AE04239AAE}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\cfps.Target.cs">
 			<Filter>Source</Filter>
@@ -13,7 +13,7 @@
 			<Filter>Source</Filter>
 		</None >
 		<Filter Include="Config">
-			<UniqueIdentifier>{0E797C29-7E11-4C02-9F0B-AD73291CD5F2}</UniqueIdentifier>
+			<UniqueIdentifier>{2AD18B11-486B-4CE8-BED8-51EF8A00E169}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Config\DefaultEditor.ini">
 			<Filter>Config</Filter>
@@ -31,7 +31,7 @@
 			<Filter>Config</Filter>
 		</None >
 		<Filter Include="Source\cfps">
-			<UniqueIdentifier>{D2F61260-0BD3-413C-8505-C4911A3953A7}</UniqueIdentifier>
+			<UniqueIdentifier>{D8D20961-852B-4E6E-9E3A-8958927AFF16}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\cfps\cfps.Build.cs">
 			<Filter>Source\cfps</Filter>

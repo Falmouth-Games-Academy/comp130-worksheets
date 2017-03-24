@@ -1,3 +1,0 @@
-C:\Users\Jack\Documents\Uni Folder\comp130-worksheets\worksheet_C\FPS\Source\FPS\FPS.Build.cs
-C:\Users\Jack\Documents\Uni Folder\comp130-worksheets\worksheet_C\FPS\Source\FPS.Target.cs
-C:\Users\Jack\Documents\Uni Folder\comp130-worksheets\worksheet_C\FPS\Source\FPSEditor.Target.cs
