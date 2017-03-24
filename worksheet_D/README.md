@@ -2,45 +2,23 @@
 
 ### Sprint One
 
-- Set up raycast to toggle visibility of point lights
-- Designed and built Github pages website for our game
-- Set up Facebook and Twitter pages to advertise our game during development.
-- Set up and organised a Github repoistory for our game to use until SVN server is ready.
-- Organised meeting with programmers to plan and divide out tasks.
+In our first sprint, I implemented raycasting to toggle the visibiliy of point lights. I also built our Github pages website, designing a minimalist theme to match the style of our game https://fingerguns.github.io/standby.github.io/ . Additionally I set up a facebook and twitter account to advertise our game throughout development, as well as a github repository to use whilst waiting for our SVN server. Finally I organised a meeting with the other programmers to plan and divide out tasks.
 
 ### Sprint Two
 
-- Worked as comminicator between programmers and the rest of the team, as not everybody was making it in to Stand Ups.
-- Created widget for inventory screen
-- Set up function to toggle all lights in scene from light switch, using raycast.
-- Set up basic pickup system, but needs to be built on.
-- Set up audio activation by raycast.
-- Implemented blueprints by other programmers and self into project, as still waiting for SVN server. 
+In our second sprint, I worked as a commuincator between the programmers and rest of our team, as not everybody was making it in to the daily Stand Ups. I implemented a basic pickup system and created a widget for the inventory, displayed on the viewport by pressing relevant keyboard button. However, on playtesting I needed to make some improvements to the system in the following sprint. Additionally I set up a function to toggle all lights in the map from one light switch, using raycasting. Finally, I set up audio activation by raycast and added blueprints by self and other programmers to game, as we were still waiting for the SVN server.
 
 ### Sprint Three
 
-- Completed pickup system, including: inventory widget with slots to display item icons once picked up, spawn and deleting widget on viewport, picking up and destroying actors (namely, keycards and axe).
-- Added pickup system into game, unfortunatly was saved over by other team members, so needs to be re-added.
-- Set up and organised a trello just for programmers, as we were finding it difficult to keep track of tasks in the group trello.
-- Built matinee for open and closing doors, and set up function so that study door only opens with keycard present in inventory.
-- Placed main menu and pause screen, made by Phil and John, into main project.
-- Set up raycast in its own function, so that we can use multiple times without repeating blueprint script. This has made it much quicker to add new features and keeps the event graph tidier.
+For our third sprint, I completed the pickup system, including; inventory widgets with slots to display item icons once picked up, spawn and deleting widget on viewport (rather than toggling visbility), picking up and destroying actors (namely keycards and axe). Although I added this to the game, members of are team have forgotten to update SVN before committing, meaning I will have to re-add the pickup system in the next sprint. I built matinee for opening and closing study door, which is only called if keycard is present in inventory when door is raycasted. To tidy the event graph and make it quicker to add new features, I set up raycast in its own function named 'Trace', enabling us to use it multiple times without repeating script. Additionaly I set up and organised a trello just for the programmers in our team, as we were  finding it diffiuclt to keep track of tasks in the group trello.
 
 ### Sprint Four
 
-- Added five phone screens widgets and ability to use mouse cursor to press buttons on phone to switch between screens.
-- Added pickup systen and door and door matinees back into game, as had been saved over.
-- Edited website, adding screenshots and setting up Youtube account ready for trailer.
-- Added in patricle effects to TV and fridge, so that when raycasted, they explode and/or spark.
-- Implemented crouch so that player is low enough to fit under desks, however, this ended up being saved over and was put back in by John.
-- Tried to stress importance of updating SVN before commiting to rest of team, as losing a lot of my work.
-- Helped prepare for trailer, by fixing small bugs and giving ideas for information to include in powerpoint.
+In sprint four, I added the ability to switch between five phone sceen widgets, using mouse cursor to select buttons. I also re-added the pickup system and door matinee, which had been saved over. To distract AI, we needed to implment explosions and breakage of household electrics, so I added a particle effect to the TV and fridge, triggered by raycast. I also implemented crouch so that our player is low down enough to hide under desks, however, this was also osaved over and in a later sprint wad added back in by John. All of the programmers in our team have tried to stress the importance in updating SVN before committing and to not upload Save files. Additionally I edited our website, adding screenshots and setting up a Youtube account ready for trailer. I also helped preapre for the trailer by fixing small bugs picked up by designiners and giving ideas for information to include in powerpoint.
 
 ### Sprint Five
 
-- Implemented door matinees, triggered by trigger box overlap back into game as had been saved over again.
-- Set phone widget up to display in first person character mesh rather than viewport.
-- Set up light switches to only turn on all lights in current room, rather than whole house, but need to add this to project again as was saved over.
+During sprint five, I switched the door matinees to be triggered by trigger box overlap, rather than raycast, with the exception of the two doors requring keycards to activate. These had to be re-added, as again work had been saved over. An important job this sprint was to set up phone widget in world space, rather than in the viewport, we wanted to have the phone in the hand of th first person player, and I have been able to successfully add this. However, I need to add in functionaily to switch between different phone screens and trigger events with phone buttons. Finally I set up light switces to turn on only lights in the current room, rather than the whole house, but this needs to be re-added in the next sprint, as once again the work was saved over.
 
 ### Final Sprint
 
