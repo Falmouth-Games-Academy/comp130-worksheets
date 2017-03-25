@@ -16,6 +16,7 @@
 <li>Imported all of the first monster animations and implemented 1 attack animation, 1 damage taked animation, idle and running.</li>
 <li>Imported all of the second monster (raptor) animations and implemented 1 attack animation, 1 damage taked animation, idle and running.</li>
 <li>Attempted import on player weapon animations which failed.</li>
+<li>Try to import Fmod plugin, but it kept breaking the project.</li>
 </ul>
 <h2>Sprint 4</h2>
 <ul>
