@@ -8,17 +8,19 @@
 </ul>
 <h2>Sprint 2</h2>
 <ul>
-<li>Imported all of the first monster animations and implemented 1 attack animation, 1 damage taked animation, idle and running.</li>
+<li>Re-implemented AI on new map.</li>
+<li>Test import of models.</li>
 </ul>
 <h2>Sprint 3</h2>
 <ul>
+<li>Imported all of the first monster animations and implemented 1 attack animation, 1 damage taked animation, idle and running.</li>
 <li>Imported all of the second monster (raptor) animations and implemented 1 attack animation, 1 damage taked animation, idle and running.</li>
 <li>Attempted import on player weapon animations which failed.</li>
 </ul>
 <h2>Sprint 4</h2>
 <ul>
 <li>Successful import of player weapon animations.</li>
-<li>Implemented all weapon animations and set them up to cycle through the attacks.</li>
+<li>Implemented weapon animations to cycle through the attacks.</li>
 <li>Got a proper install of UE4.12.5 on one of the studio machines and added the FMOD plugin.</li>
 </ul>
 <h2>Sprint 5</h2>
