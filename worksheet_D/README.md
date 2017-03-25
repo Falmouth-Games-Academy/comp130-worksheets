@@ -13,9 +13,9 @@
 </ul>
 <h2>Sprint 3</h2>
 <ul>
-<li>Imported all of the first monster animations and implemented 1 attack animation, 1 damage taked animation, idle and running.</li>
-<li>Imported all of the second monster (raptor) animations and implemented 1 attack animation, 1 damage taked animation, idle and running.</li>
-<li>Commented uncommented sections of the first person blueprint</li>
+<li>Imported all of the first monster animations and implemented 1 attack animation, 1 damage taken animation, idle and running.</li>
+<li>Imported all of the second monster (raptor) animations and implemented 1 attack animation, 1 damage taken animation, idle and running.</li>
+<li>Commented uncommented sections of the first person blueprint.</li>
 <li>Attempted import on player weapon animations which failed.</li>
 <li>Try to import Fmod plugin, but it kept breaking the project.</li>
 </ul>
