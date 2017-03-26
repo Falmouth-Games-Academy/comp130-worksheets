@@ -14,5 +14,5 @@ The enemy blueprints (Enemy_BP) inherit from MyEnemy.cpp for the inherited float
 
 ## References
 
-As mentioned in WorksheetCCharacter.h, the methods used were learned from a series of tutorials by (Reuben Ward)[https://www.youtube.com/channel/UCpsN2TfWGmun4peN2IPgcKg]. Hail Reuben Ward.
+As mentioned in WorksheetCCharacter.h, the methods used were learned from a series of tutorials by [Reuben Ward](https://www.youtube.com/channel/UCpsN2TfWGmun4peN2IPgcKg). Hail Reuben Ward.
 
