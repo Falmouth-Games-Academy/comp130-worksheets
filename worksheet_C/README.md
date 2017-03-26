@@ -6,7 +6,7 @@ The extra features were; destructible enemies, destructible environment pieces, 
 
 In the project there were some older unused .cpp files which were still referenced in memory when trying to delete, so I was apprehensive about deleting them entirely.
 
-The .cpp files in which I worked, and are used, are MyEnemy, WorksheetCCharacter, and WorksheetCProjectile.
+The .cpp files in which I worked, and are used, are MyEnemy, WorksheetCCharacter (last two functions), and WorksheetCProjectile.
 
 ## Hierarchy
 
@@ -14,5 +14,5 @@ The enemy blueprints (Enemy_BP) inherit from MyEnemy.cpp for the inherited float
 
 ## References
 
-As mentioned in WorksheetCCharacter.h, the methods used were learned from a series of tutorials by [Reuben Ward](https://www.youtube.com/channel/UCpsN2TfWGmun4peN2IPgcKg). Hail Reuben Ward.
+As mentioned in WorksheetCCharacter.h, the methods used were learned from a series of tutorials by (Reuben Ward)[https://www.youtube.com/channel/UCpsN2TfWGmun4peN2IPgcKg]. Hail Reuben Ward.
 
