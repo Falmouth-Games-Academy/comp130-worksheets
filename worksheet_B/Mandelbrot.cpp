@@ -33,7 +33,7 @@ int main()
 			double x = 0;
 			double y = 0;
 
-			while ((((x*x) + (y*y)) < 4) && iteration < maxIteration) 
+			while (x*x + y*y < 4 && iteration < maxIteration)
 			{
 				double xTemp = (x*x) - (y*y) + x0;
 				y = 2 * x * y + y0;
@@ -44,7 +44,7 @@ int main()
 			int Red = 0;
 			int Green = 0;
 			int Blue = 0;
-			const Max = 255;
+			const int Max = 255;
 
 		
 			if (iteration <= 0)
