@@ -7,8 +7,22 @@
 const int wordLength = 5;
 const int numberOfWords = 15;
 
+int getLikeness(std::string secretWord, std::string playersWord)
+{
+	int Likeness = 0;
+	for (int i = 0; i < secretWord.length(); i++)
+	{
+		if (playersWord[i] == secretWord[i])
+		{
+			Likeness++;
+		}
+	}
+	return Likeness;
+}
+
 int main()
 {
+
 	// Seed the random number generator with the current time,
 	// to ensure different results each time the program is run
 	srand(static_cast<unsigned int>(time(nullptr)));
@@ -40,7 +54,34 @@ int main()
 	}
 
 	// TODO: implement the rest of the game
+	int lives = 5;
+	bool playerHasChosen;
+	std::string playerInput;
+	std::string guess;
+	int wordLikeness;
 
+	while (lives > 0)
+	{
+		playerHasChosen = false;
+		while (playerHasChosen == false)
+		{
+			std::cout << "Enter your guess in Capitals\n";
+			std::cin >> playerInput;
+			playerHasChosen = true;
+		}
+		wordLikeness = getLikeness(playerInput, secret);
+		std::cout << "Your likeness score is: " << wordLikeness << "/" << wordLength << std::endl;
+
+		if (wordLikeness == wordLength)
+		{
+			std::cout << "You guessed Correctly... Well done!" << std::endl;
+			return 0;
+		}
+		else {
+			lives--;
+			std::cout << " You have " << lives << " guesses left \n" << std::endl;
+		}
+	}
+	std::cout << "You ran out of guesses!";
     return 0;
 }
-
