@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.12",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "GrenadeLauncher0",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
